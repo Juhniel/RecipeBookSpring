@@ -47,12 +47,18 @@ function toggleDropdown() {
     }
 }
 
+
+
 function toggleSearchField() {
     let searchField = document.querySelector('.search-field');
-    if (searchField.style.display === 'block') {
-        searchField.style.display = 'none';
+    let searchIcon = document.querySelector('.search-icon img');
+
+    if (searchField.style.display === "none") {
+        searchField.style.display = "block";
+        searchIcon.src = "https://recept.se/assets/images/menu/close.svg";
     } else {
-        searchField.style.display = 'block';
+        searchField.style.display = "none";
+        searchIcon.src = "https://recept.se/assets/images/menu/search.svg";
     }
 }
 

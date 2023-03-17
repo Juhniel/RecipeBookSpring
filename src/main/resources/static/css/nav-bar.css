@@ -42,6 +42,12 @@
     cursor: pointer;
 }
 
+.navbar-brand {
+    text-decoration: none;
+    color: inherit;
+}
+
+
 .navbar-menu-item:hover {
     color: #cceeff;
 }
@@ -53,29 +59,50 @@
     margin-top: 30px;
 }
 
-.search-form input[type="text"] {
-    width: 400px;
-    height: 6px;
-    font-size: 16px;
-    padding: 5px 10px; /* reduce the padding */
+.search-form input[type="text"].navbar-search-field {
+    width: 200px;
+    height: 34px; /* increased height */
+    font-size: 16px; /* increased font size */
+    padding: 5px 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-top-left-radius: 5px; /* apply border-radius only to the left side */
+    border-bottom-left-radius: 5px;
     outline: none;
 }
 
+.search-form input[type="text"].navbar-search-field::-webkit-input-placeholder { /* Chrome, Edge, Safari */
+    font-size: 16px; /* increased font size */
+    text-align: left; /* align placeholder text to the left */
+}
 
+.search-form input[type="text"].navbar-search-field::-moz-placeholder { /* Firefox 19+ */
+    font-size: 16px; /* increased font size */
+    text-align: left; /* align placeholder text to the left */
+}
+
+.search-form input[type="text"].navbar-search-field:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-size: 16px; /* increased font size */
+    text-align: left; /* align placeholder text to the left */
+}
+
+.search-form input[type="text"].navbar-search-field::placeholder { /* Standard */
+    font-size: 16px; /* increased font size */
+    text-align: left; /* align placeholder text to the left */
+}
 
 .search-form button[type="submit"] {
     width: 100px;
-    height: 40px;
+    height: 36px; /* adjusted height to match the search field */
     font-size: 16px;
     background-color: #d87f7f;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-top-right-radius: 5px; /* apply border-radius only to the right side */
+    border-bottom-right-radius: 5px;
     cursor: pointer;
     outline: none;
 }
+
 
 
 /*MYPROFILE*/
@@ -121,23 +148,23 @@
 .hamburger-icon {
     background-color: #fff;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     display: flex;
     justify-content: center;
-    /*align-items: stretch; !* or align-items: stretch *!*/
     align-items: center;
-    margin-left: 10px;
+    margin-right: 20px;
+    cursor: pointer;
 }
 
 .hamburger-icon img {
     width: 20px;
     height: 20px;
-    align-items: center;
-    margin-left: 10px;
-    vertical-align: middle;
-    cursor: pointer;
+    position: relative;
+    top: 1px; /* Adjust the position of the image */
+    left: 5px; /* Adjust the position of the image */
 }
+
 
 
 .dropdown {

@@ -13,18 +13,21 @@
 <nav class="navbar">
     <div class="navbar-logo">
         <div class="dropdown">
-            <div class="hamburger-icon">
-                <img src="https://recept.se/assets/images/menu/hamburger.svg" alt="Logo" onclick="toggleDropdown()">
+            <div class="hamburger-icon" onclick="toggleDropdown()">
+                <img src="https://recept.se/assets/images/menu/hamburger.svg" alt="Logo">
             </div>
-<!--                GÖR OM DIV TILL <a> länkar så att vi skickas till contact.html , aboutUs.html och articles.html -->
+            <!-- GÖR OM DIV TILL <a> länkar så att vi skickas till contact.html , aboutUs.html och articles.html -->
             <div class="dropdown-menu" id="dropdown-menu">
                 <div class="dropdown-menu-item">Articles</div>
                 <div class="dropdown-menu-item">About us</div>
                 <div class="dropdown-menu-item">Contact us</div>
             </div>
         </div>
-        <h3>JIKA DEV</h3>
+        <a href="/" class="navbar-brand"> <!-- Add the link to the home page -->
+            <h3>JIKA DEV</h3>
+        </a>
     </div>
+
     <div class="navbar-menu">
 
         <div class="search">
@@ -32,7 +35,7 @@
                 <div class="search-icon" onclick="toggleSearchField()">
                     <img src="https://recept.se/assets/images/menu/search.svg" alt="search icon">
                 </div>
-                <input type="text" class="search-field" name="searchTerm" placeholder="Search..." onfocus="this.placeholder=''" onblur="this.placeholder='Search...'">
+                <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..." onfocus="this.placeholder=''" onblur="this.placeholder='Search...'">
             </form>
         </div>
         <div class="user">
@@ -144,6 +147,8 @@
                 dolore magna aliqua.</p>
         </div>
     </div>
+
+    <h1>TESTING TESTING</h1>
 </section>
 </body>
 </html>
