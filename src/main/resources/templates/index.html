@@ -16,10 +16,11 @@
             <div class="hamburger-icon">
                 <img src="https://recept.se/assets/images/menu/hamburger.svg" alt="Logo" onclick="toggleDropdown()">
             </div>
+<!--                GÖR OM DIV TILL <a> länkar så att vi skickas till contact.html , aboutUs.html och articles.html -->
             <div class="dropdown-menu" id="dropdown-menu">
-                <div class="dropdown-menu-item">Item 1</div>
-                <div class="dropdown-menu-item">Item 2</div>
-                <div class="dropdown-menu-item">Item 3</div>
+                <div class="dropdown-menu-item">Articles</div>
+                <div class="dropdown-menu-item">About us</div>
+                <div class="dropdown-menu-item">Contact us</div>
             </div>
         </div>
         <h3>JIKA DEV</h3>
@@ -31,7 +32,7 @@
                 <div class="search-icon" onclick="toggleSearchField()">
                     <img src="https://recept.se/assets/images/menu/search.svg" alt="search icon">
                 </div>
-                <input type="text" class="search-field" name="searchTerm" placeholder="Search...">
+                <input type="text" class="search-field" name="searchTerm" placeholder="Search..." onfocus="this.placeholder=''" onblur="this.placeholder='Search...'">
             </form>
         </div>
         <div class="user">
