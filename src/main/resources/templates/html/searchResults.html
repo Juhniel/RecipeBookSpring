@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:s="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipes</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/result-recipe.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
+    <script type="text/javascript" th:src="@{/js/addToFavourites.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-logo">
+        <div class="dropdown">
+            <div class="hamburger-icon">
+                <img src="https://recept.se/assets/images/menu/hamburger.svg" alt="Logo" onclick="toggleDropdown()">
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu">
+                <div class="dropdown-menu-item">Item 1</div>
+                <div class="dropdown-menu-item">Item 2</div>
+                <div class="dropdown-menu-item">Item 3</div>
+            </div>
+        </div>
+        <h3>Your Website Name</h3>
+    </div>
+
+    <div class="navbar-menu">
+
+        <div class="search">
+            <form class="search-form" th:action="@{/search}" method="get">
+                <div class="search-icon" onclick="toggleSearchField()">
+                    <img src="https://recept.se/assets/images/menu/search.svg" alt="search icon">
+                </div>
+                <input type="text" class="search-field" name="searchTerm" placeholder="Search...">
+            </form>
+        </div>
+        <div class="user">
+            <div class="user-icon" id="user-icon">
+                <img src="https://recept.se/assets/images/icons/user.svg" alt="user icon">
+            </div>
+            <div class="profile-form" id="profileForm">
+                <form action="/logout" method="post" s:authentication="">
+                    <a class="profile-dropdown" href="/myProfile">My Profile</a>
+                    <a class="profile-dropdown" href="/myFavourites">Favourite Recipes</a>
+                    <a class="profile-dropdown" href="/changePassword">Change Password</a>
+                    <button type="submit">Log Out</button>
+                </form>
+            </div>
+            <div class="login-form" id="loginForm">
+                <form action="/login" method="post">
+                    <input type="text" name="username" placeholder="Username">
+                    <input type="password" name="password" placeholder="Password">
+                    <button type="submit">Log in</button>
+                </form>
+                <a href="/createAccount">Create Account</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="searchResultContainer">
+<h1>Search Results</h1>
+
+<p th:if="${#lists.isEmpty(recipes)}">No results found for "${param.searchTerm}"</p>
+
+<div th:if="${recipes != null}">
+    <div class="recipeGrid">
+        <div th:each="recipe : ${recipes}" class="recipeCard">
+            <a th:href="@{/recipe/{id}(id=${recipe.getRecipeId()})}">
+                <img th:src="${recipe.getRecipeImage()}" alt="Recipe image" style="width: 300px; height: 200px;">
+                <h2 class="recipeTitle" th:text="${recipe.getRecipeName()}"></h2>
+            </a>
+            <button class="addToFavorites" name="addToFavourites" id="addToFavourites"
+                    th:attr="data-recipe-id=${recipe.getRecipeId()}" onclick="addToFavourites(event)"
+                    th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'heart-red' : ''">
+                <i class="fa" th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'fa-heart' : 'fa-heart-o'" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
