@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #007bff;
+    background-color: #d87f7f;
     color: #fff;
     padding: 10px;
     width: 100%;
@@ -69,7 +69,7 @@
     width: 100px;
     height: 40px;
     font-size: 16px;
-    background-color: #007bff;
+    background-color: #d87f7f;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -270,11 +270,11 @@
     margin-bottom: 10px;
     border: none;
     border-radius: 5px;
-    outline: none;
+    outline-color: #d87f7f;
 }
 
 .login-form button[type="submit"] {
-    background-color: #007bff;
+    background-color: #d87f7f;
     color: #fff;
     cursor: pointer;
 }
@@ -282,7 +282,7 @@
 .login-form a {
     display: block;
     text-align: center;
-    color: #007bff;
+    color: #d87f7f;
     text-decoration: none;
 }
 
@@ -301,10 +301,13 @@
     border-bottom: 2px solid #ccc;
 }
 
+.search-form input[type="text"]::placeholder {
+    text-align: center;
+}
+
 .search-form button {
     display: flex;
     align-items: center;
-    justify-items: center;
     justify-content: center;
     padding: 1rem;
     font-size: 1.6rem;
@@ -315,7 +318,7 @@
 }
 
 .search-form button:hover {
-    background-color: #22493a;
+    background-color: #f65555;
 }
 
 
