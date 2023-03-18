@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>My favourite recipes</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/result-recipe.css}">
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/result-recipe.css}">-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/myFavourites.css}">
+
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
     <script type="text/javascript" th:src="@{/js/addToFavourites.js}" th:defer="defer"></script>
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
@@ -60,21 +62,21 @@
     </div>
 </nav>
 
-<div class="favouriteRecipesContainer">
-    <h1>Your Favourite Recipes</h1>
-<p th:if="${#lists.isEmpty(favouriteRecipes)}">No favorite recipes found.</p>
-<div class="recipeGrid">
-    <div th:each="favRecipe : ${favouriteRecipes}" class="recipeCard">
-        <a th:href="@{/recipe/{id}(id=${favRecipe.getRecipe().getRecipeId()})}">
-            <img th:src="${favRecipe.getRecipe().getRecipeImage()}" alt="Recipe image" style="width: 300px; height: 200px;">
-            <h2 th:text="${favRecipe.getRecipe().getRecipeName()}" class="recipeTitle"></h2>
-        </a>
-        <button class="addToFavorites heart-red" name="addToFavourites" id="addToFavourites"
-                th:attr="data-recipe-id=${favRecipe.getRecipe().getRecipeId()}" onclick="addToFavourites(event)">
-            <i class="fa fa-heart"></i>
-        </button>
+    <div class="favouriteRecipesContainer">
+            <h1>Your Favourite Recipes</h1>
+            <p th:if="${#lists.isEmpty(favouriteRecipes)}">No favorite recipes found.</p>
+        <div class="recipeGrid">
+            <div th:each="favRecipe : ${favouriteRecipes}" class="recipeCard">
+                <a th:href="@{/recipe/{id}(id=${favRecipe.getRecipe().getRecipeId()})}">
+                    <img th:src="${favRecipe.getRecipe().getRecipeImage()}" alt="Recipe image" style="width: 300px; height: 200px;">
+                    <h2 th:text="${favRecipe.getRecipe().getRecipeName()}" class="recipeTitle"></h2>
+                </a>
+                <button class="addToFavorites heart-red" name="addToFavourites" id="addToFavourites"
+                        th:attr="data-recipe-id=${favRecipe.getRecipe().getRecipeId()}" onclick="addToFavourites(event)">
+                    <i class="fa fa-heart"></i>
+                </button>
+            </div>
+        </div>
     </div>
-</div>
-</div>
 </body>
 </html> 
