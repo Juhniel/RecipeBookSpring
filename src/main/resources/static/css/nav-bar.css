@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #007bff;
+    background-color: #d87f7f;
     color: #fff;
     padding: 10px;
     width: 100%;
@@ -42,6 +42,12 @@
     cursor: pointer;
 }
 
+.navbar-brand {
+    text-decoration: none;
+    color: inherit;
+}
+
+
 .navbar-menu-item:hover {
     color: #cceeff;
 }
@@ -53,29 +59,50 @@
     margin-top: 30px;
 }
 
-.search-form input[type="text"] {
-    width: 400px;
-    height: 6px;
-    font-size: 16px;
-    padding: 5px 10px; /* reduce the padding */
+.search-form input[type="text"].navbar-search-field {
+    width: 200px;
+    height: 34px; /* increased height */
+    font-size: 16px; /* increased font size */
+    padding: 5px 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-top-left-radius: 5px; /* apply border-radius only to the left side */
+    border-bottom-left-radius: 5px;
     outline: none;
 }
 
+.search-form input[type="text"].navbar-search-field::-webkit-input-placeholder { /* Chrome, Edge, Safari */
+    font-size: 16px; /* increased font size */
+    text-align: left; /* align placeholder text to the left */
+}
 
+.search-form input[type="text"].navbar-search-field::-moz-placeholder { /* Firefox 19+ */
+    font-size: 16px; /* increased font size */
+    text-align: left; /* align placeholder text to the left */
+}
+
+.search-form input[type="text"].navbar-search-field:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-size: 16px; /* increased font size */
+    text-align: left; /* align placeholder text to the left */
+}
+
+.search-form input[type="text"].navbar-search-field::placeholder { /* Standard */
+    font-size: 16px; /* increased font size */
+    text-align: left; /* align placeholder text to the left */
+}
 
 .search-form button[type="submit"] {
     width: 100px;
-    height: 40px;
+    height: 36px; /* adjusted height to match the search field */
     font-size: 16px;
-    background-color: #007bff;
+    background-color: #d87f7f;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-top-right-radius: 5px; /* apply border-radius only to the right side */
+    border-bottom-right-radius: 5px;
     cursor: pointer;
     outline: none;
 }
+
 
 
 /*MYPROFILE*/
@@ -83,7 +110,7 @@
 .profile-form {
     display: none;
     position: absolute;
-    top: 60px;
+    top: 70px;
     right: 0;
     background-color: #fff;
     padding: 10px;
@@ -100,11 +127,19 @@
 
 .profile-form form a{
     padding: 2px;
+    text-decoration: none;
+    color: #d87f7f;
 }
 
 .profile-form button {
     margin: 10px;
     padding: 2px;
+    background-color: #d87f7f;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    width: 140px;
+    height: 30px;
 }
 
 
@@ -113,23 +148,23 @@
 .hamburger-icon {
     background-color: #fff;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     display: flex;
     justify-content: center;
-    /*align-items: stretch; !* or align-items: stretch *!*/
     align-items: center;
-    margin-left: 10px;
+    margin-right: 20px;
+    cursor: pointer;
 }
 
 .hamburger-icon img {
     width: 20px;
     height: 20px;
-    align-items: center;
-    margin-left: 10px;
-    vertical-align: middle;
-    cursor: pointer;
+    position: relative;
+    top: 1px; /* Adjust the position of the image */
+    left: 5px; /* Adjust the position of the image */
 }
+
 
 
 .dropdown {
@@ -141,7 +176,7 @@
 .dropdown-menu {
     display: none;
     position: fixed;
-    top: 3.5rem; /* Change this to match the height of your navbar */
+    top: 4.3rem; /* Change this to match the height of your navbar */
     left: 0;
     width: 100%;
     height: 30vh; /* Change this to adjust the height of the menu */
@@ -252,7 +287,7 @@
 .login-form {
     display: none;
     position: absolute;
-    top: 50px;
+    top: 70px;
     right: 0px;
     background-color: #fff;
     padding: 10px;
@@ -270,11 +305,11 @@
     margin-bottom: 10px;
     border: none;
     border-radius: 5px;
-    outline: none;
+    outline-color: #d87f7f;
 }
 
 .login-form button[type="submit"] {
-    background-color: #007bff;
+    background-color: #d87f7f;
     color: #fff;
     cursor: pointer;
 }
@@ -282,7 +317,7 @@
 .login-form a {
     display: block;
     text-align: center;
-    color: #007bff;
+    color: #d87f7f;
     text-decoration: none;
 }
 
@@ -301,7 +336,14 @@
     border-bottom: 2px solid #ccc;
 }
 
+.search-form input[type="text"]::placeholder {
+    text-align: center;
+}
+
 .search-form button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 1rem;
     font-size: 1.6rem;
     background-color: #286052;
@@ -311,7 +353,7 @@
 }
 
 .search-form button:hover {
-    background-color: #22493a;
+    background-color: #f65555;
 }
 
 
