@@ -20,7 +20,6 @@
     position: relative;
     width: 100%;
     z-index: 0; /* To place the background behind the content test */
-/*    test   --  */
 }
 
 .hero-content {
