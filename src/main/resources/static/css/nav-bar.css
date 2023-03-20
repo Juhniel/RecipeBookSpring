@@ -19,7 +19,6 @@
     z-index: 2; /* Make sure the navbar appears on top of the dropdown menu */
 }
 
-
 /* Logo and menu items container */
 .navbar-logo {
     display: flex;
@@ -52,13 +51,11 @@
     color: inherit;
 }
 
-
 .navbar-menu-item:hover {
     color: #cceeff;
 }
 
 /*SEARCH FORM*/
-
 .search-form {
     text-align: center;
     margin-top: 30px;
@@ -94,8 +91,6 @@
     font-size: 16px; /* increased font size */
     text-align: left; /* align placeholder text to the left */
 }
-
-
 
 
 
@@ -136,9 +131,7 @@
     height: 30px;
 }
 
-
 /* Dropdown menu container */
-
 .hamburger-icon {
     background-color: #fff;
     border-radius: 50%;
@@ -158,8 +151,6 @@
     top: 1px; /* Adjust the position of the image */
     left: 5px; /* Adjust the position of the image */
 }
-
-
 
 .dropdown {
     position: relative;
@@ -183,7 +174,6 @@
     box-sizing: border-box;
 }
 
-
 .dropdown-menu.show {
     display: block;
 }
@@ -198,8 +188,6 @@
 .dropdown-menu-item:hover {
     background-color: #f2f2f2;
 }
-
-
 
 /* Custom animation */
 @keyframes dropdown-menu-animation {
@@ -252,7 +240,6 @@
     width: 200px; /* increase the width on focus */
     padding: 10px; /* increase the padding on focus */
 }
-
 
 /* User container */
 .user {
@@ -348,7 +335,6 @@
 .search-form button:hover {
     background-color: #f65555;
 }
-
 
 /* Media query for smaller screens */
 @media (max-width: 768px) {
