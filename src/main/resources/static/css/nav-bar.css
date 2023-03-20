@@ -90,18 +90,7 @@
     text-align: left; /* align placeholder text to the left */
 }
 
-.search-form button[type="submit"] {
-    width: 100px;
-    height: 36px; /* adjusted height to match the search field */
-    font-size: 16px;
-    background-color: #d87f7f;
-    color: #fff;
-    border: none;
-    border-top-right-radius: 5px; /* apply border-radius only to the right side */
-    border-bottom-right-radius: 5px;
-    cursor: pointer;
-    outline: none;
-}
+
 
 
 
