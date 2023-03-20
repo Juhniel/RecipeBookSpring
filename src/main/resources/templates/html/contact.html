@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:s="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/contact.css}">
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -57,5 +58,52 @@
         </div>
     </div>
 </nav>
+
+<!-- CONTACT FORM -->
+<!--<form action="" method=""> &lt;!&ndash; länk till våra mejl &ndash;&gt;-->
+<!--    <div class="contact-form">-->
+<!--        <input type="text" name="name" id="name" required>-->
+<!--        <label for="name">-->
+<!--            <p>Name</p>-->
+<!--        </label>-->
+<!--    </div>-->
+<!--    <div class="contact-form">-->
+<!--        <input type="email" name="email" id="email" required>-->
+<!--        <label for="email">-->
+<!--            <p>Email</p>-->
+<!--        </label>-->
+<!--    </div>-->
+<!--    <div class="contact-form">-->
+<!--        <textarea id="message" type="text" name="message" cols="30" rows="10" required></textarea>-->
+<!--        <label for="message">-->
+<!--            <p>Message</p>-->
+<!--        </label>-->
+<!--    </div>-->
+<!--    <button type="submit" class="button-form">SUBMIT</button>-->
+<!--</form>-->
+
+<div class="container">
+    <form action="" method=""> <!-- länk till våra mejl -->
+        <div class="form-group">
+            <input type="text" name="name" id="name" required>
+            <label for="name">
+                <p>Name</p>
+            </label>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" id="email" required>
+            <label for="email">
+                <p>Email</p>
+            </label>
+        </div>
+        <div class="form-group">
+            <textarea id="message" type="text" name="message" cols="30" rows="10" required></textarea>
+            <label for="message">
+                <p>Message</p>
+            </label>
+        </div>
+        <button type="submit" class="button-form">SUBMIT</button>
+    </form>
+</div>
 </body>
 </html>
