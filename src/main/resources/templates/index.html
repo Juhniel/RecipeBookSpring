@@ -34,7 +34,8 @@
                 <div class="search-icon" onclick="toggleSearchField()">
                     <img src="https://recept.se/assets/images/menu/search.svg" alt="search icon">
                 </div>
-                <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..." onfocus="this.placeholder=''" onblur="this.placeholder='Search...'">
+                <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..."
+                       onfocus="this.placeholder=''" onblur="this.placeholder='Search...'">
             </form>
         </div>
         <div class="user">
@@ -51,8 +52,10 @@
             </div>
             <div class="login-form" id="loginForm">
                 <form action="/login" method="post">
-                    <input type="text" name="username" placeholder="Username" onfocus="this.placeholder=''" onblur="this.placeholder='Username'" required>
-                    <input type="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'" required>
+                    <input type="text" name="username" placeholder="Username" onfocus="this.placeholder=''"
+                           onblur="this.placeholder='Username'" required>
+                    <input type="password" name="password" placeholder="Password" onfocus="this.placeholder=''"
+                           onblur="this.placeholder='Password'" required>
                     <button type="submit">Log in</button>
                 </form>
                 <a href="/createAccount">Create Account</a>
@@ -66,7 +69,8 @@
         <h1>Welcome to your website</h1>
         <p>Find delicious recipes for every occasion</p>
         <form class="search-form" th:action="@{/search}" method="get">
-            <input type="text" name="searchTerm" placeholder="Search for recipes..." onfocus="this.placeholder=''" onblur="this.placeholder='Search for recipes...'">
+            <input type="text" name="searchTerm" placeholder="Search for recipes..." onfocus="this.placeholder=''"
+                   onblur="this.placeholder='Search for recipes...'">
             <button type="submit">Search</button>
         </form>
     </div>
@@ -91,63 +95,52 @@
 
     <hr>
 
-    <h2>Gallery 1</h2>
-    <div class="gallery-container">
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 1">
-            <h2>Gallery Item 1</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 2">
-            <h2>Gallery Item 2</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 3">
-            <h2>Gallery Item 3</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 4">
-            <h2>Gallery Item 4</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
+    <div class="gallery-wrapper">
+        <h2 class="gallery-header">Gallery 2</h2>
+        <div class="gallery-container gallery-container-2">
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/800x400" alt="Gallery item 1">
+                <h5>Gallery Item 1</h5>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/800x400" alt="Gallery item 2">
+                <h5>Gallery Item 2</h5>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/800x400" alt="Gallery item 3">
+                <h5>Gallery Item 3</h5>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/800x400" alt="Gallery item 4">
+                <h5>Gallery Item 4</h5>
+            </div>
         </div>
     </div>
 
-    <h2>Gallery 2</h2>
-    <div class="gallery-container">
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 5">
-            <h2>Gallery Item 5</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 6">
-            <h2>Gallery Item 6</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 7">
-            <h2>Gallery Item 7</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 8">
-            <h2>Gallery Item 8</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
+    <div class="gallery-wrapper">
+        <h2 class="gallery-header">Gallery 1</h2>
+        <div class="gallery-container gallery-container-3">
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/800x400" alt="Gallery item 5">
+                <h5>Gallery Item 5</h5>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/800x400" alt="Gallery item 6">
+                <h5>Gallery Item 6</h5>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/800x400" alt="Gallery item 7">
+                <h5>Gallery Item 7</h5>
+
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/800x400" alt="Gallery item 8">
+                <h5>Gallery Item 8</h5>
+            </div>
         </div>
     </div>
 
-    <h1>TESTING TESTING</h1>
 </section>
+
 </body>
 </html>
