@@ -16,20 +16,19 @@
             <div class="hamburger-icon" onclick="toggleDropdown()">
                 <img src="https://recept.se/assets/images/menu/hamburger.svg" alt="Logo">
             </div>
-            <!-- GÖR OM DIV TILL <a> länkar så att vi skickas till contact.html , aboutUs.html och articles.html -->
+            <!-- GÖR OM DIV TILL <a> länkar så att vi skickas till contact.html , about.html och articles.html -->
             <div class="dropdown-menu" id="dropdown-menu">
-                <div class="dropdown-menu-item">Articles</div>
-                <div class="dropdown-menu-item">About us</div>
-                <div class="dropdown-menu-item">Contact us</div>
+                <a href="/articles" class="dropdown-menu-item">Articles</a>
+                <a href="/about" class="dropdown-menu-item">About us</a>
+                <a href="/contact" class="dropdown-menu-item">Contact us</a>
             </div>
         </div>
         <a href="/" class="navbar-brand"> <!-- Add the link to the home page -->
-            <h3>JIKA DEV NY VERSION</h3>
+            <h3>JIKA DEV Juhns version</h3>
         </a>
     </div>
 
     <div class="navbar-menu">
-
         <div class="search">
             <form class="search-form" th:action="@{/search}" method="get">
                 <div class="search-icon" onclick="toggleSearchField()">
