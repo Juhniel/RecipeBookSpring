@@ -1,4 +1,9 @@
 /* Style the navbar container */
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap);
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
 .navbar {
     position: fixed;
     top: 0;
@@ -184,7 +189,6 @@
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1;
-
     /* Custom styles */
     padding: 1rem;
     box-sizing: border-box;
