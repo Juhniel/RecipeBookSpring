@@ -114,6 +114,18 @@ hr {
     margin-bottom: 10rem;
 }
 
+.search-form button[type="submit"] {
+    width: 100px;
+    font-size: 16px;
+    background-color: #d87f7f;
+    color: #fff;
+    border: none;
+    border-top-right-radius: 5px; /* apply border-radius only to the right side */
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
 /* Media query for smaller screens */
 @media (max-width: 768px) {
     .gallery-container {
