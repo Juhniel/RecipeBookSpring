@@ -39,7 +39,7 @@ function toggleDropdown() {
     let logoImg = document.querySelector('.dropdown img');
 
     if (dropdownMenu.style.display === "none") {
-        dropdownMenu.style.display = "block";
+        dropdownMenu.style.display = "flex";
         logoImg.src = "https://recept.se/assets/images/menu/close.svg";
     } else {
         dropdownMenu.style.display = "none";

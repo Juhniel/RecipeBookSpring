@@ -22,6 +22,6 @@ public class PageController {
 
     @GetMapping("/contact")
     public String contactUs() {
-        return "contact";
+        return "../templates/html/contact";
     }
 }
