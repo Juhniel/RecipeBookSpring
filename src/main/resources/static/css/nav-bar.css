@@ -1,4 +1,9 @@
 /* Style the navbar container */
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap);
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
 .navbar {
     position: fixed;
     top: 0;
@@ -87,18 +92,7 @@
     text-align: left; /* align placeholder text to the left */
 }
 
-.search-form button[type="submit"] {
-    width: 100px;
-    height: 36px; /* adjusted height to match the search field */
-    font-size: 16px;
-    background-color: #d87f7f;
-    color: #fff;
-    border: none;
-    border-top-right-radius: 5px; /* apply border-radius only to the right side */
-    border-bottom-right-radius: 5px;
-    cursor: pointer;
-    outline: none;
-}
+
 
 /*MYPROFILE*/
 
@@ -175,7 +169,6 @@
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1;
-
     /* Custom styles */
     padding: 1rem;
     box-sizing: border-box;
