@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>My favourite recipes</title>
-<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/result-recipe.css}">-->
-    <link rel="stylesheet" type="text/css" th:href="@{/css/myFavourites.css}">
 
+    <link rel="stylesheet" type="text/css" th:href="@{/css/myFavourites.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
     <script type="text/javascript" th:src="@{/js/addToFavourites.js}" th:defer="defer"></script>
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
+    <script type="text/javascript" th:src="@{/js/filterFavouriteSearch.js}" th:defer="defer"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
 </head>
 <body>
@@ -63,9 +63,9 @@
         </div>
     </div>
 </nav>
-
     <div class="favouriteRecipesContainer">
             <h1>Your Favourite Recipes</h1>
+        <input type="text" id="searchInput" placeholder="Search...">
             <p th:if="${#lists.isEmpty(favouriteRecipes)}">No favorite recipes found.</p>
         <div class="recipeGrid">
             <div th:each="favRecipe : ${favouriteRecipes}" class="recipeCard">
