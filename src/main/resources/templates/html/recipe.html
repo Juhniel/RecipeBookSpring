@@ -24,7 +24,7 @@
       </div>
     </div>
     <a href="/" class="navbar-brand"> <!-- Add the link to the home page -->
-      <h3>JIKA DEV Juhns version</h3>
+      <img th:src="@{/images/jika-logo-removebg-preview.png}" alt="Logo">
     </a>
   </div>
 
@@ -63,22 +63,25 @@
 
 
 <div class="header">
+  <img th:src="${recipe.getRecipeImage()}" alt="Recipe image" style="width: 800px; height: 500px;">
   <h1 th:text="${recipe.getRecipeName()}"></h1>
-  <img th:src="${recipe.getRecipeImage()}" alt="Recipe image" style="width: 300px; height: 200px;">
 </div>
 
 <div class="recipeInfoContainer">
   <div class="ingredients">
     <h2>Ingredients:</h2>
     <ul>
-      <li th:each="ingredient : ${recipe.getRecipeIngredients()}" th:text="${ingredient}"></li>
+      <li th:each="ingredient : ${recipe.getRecipeIngredients().substring(1, recipe.getRecipeIngredients().length()-1).split(',')}"
+          th:text="${ingredient}"></li>
+
     </ul>
   </div>
 
   <div class="instructions">
     <h2>Instructions:</h2>
     <ol>
-      <li th:each="instruction : ${recipe.getRecipeInstructions()}" th:text="${instruction}"></li>
+      <li th:each="instruction : ${#strings.arraySplit(recipe.getRecipeInstructions().substring(0, recipe.getRecipeInstructions().length()-1), '\\.\\.')}"
+          th:text="${#strings.substring(instruction, 1)}"></li>
     </ol>
   </div>
 </div>

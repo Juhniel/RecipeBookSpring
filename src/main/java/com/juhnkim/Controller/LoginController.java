@@ -38,20 +38,19 @@ public class LoginController {
             User user = userRepository.findByUsername(username).get();
             // create a session for the logged-in user
             session.setAttribute("loggedInUser", user);
-            return "index";
+            return "redirect:/";
         } else {
             // redirect to the login page with an error message upon failed authentication
             model.addAttribute("errorUserLogin", "Check your username and password"); //Returna till ett error meddelande med model attribute
-            return "index";
+            return "redirect:/";
         }
     }
-
 
     @PostMapping("/logout")
     public String userLogOut(HttpSession session){
         session.getAttribute("loggedInUser");
         session.invalidate();
-        return "index";
+        return "redirect:/";
     }
     @GetMapping("/checkSession")
     public ResponseEntity<String> mySession(HttpSession session) {

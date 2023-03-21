@@ -26,7 +26,7 @@
             </div>
         </div>
         <a href="/" class="navbar-brand"> <!-- Add the link to the home page -->
-            <h3>JIKA DEV Juhns version</h3>
+            <img th:src="@{/images/jika-logo-removebg-preview.png}" alt="Logo">
         </a>
     </div>
 
@@ -80,9 +80,9 @@
 
 
 <section class="gallery">
-    <div class="gallery-container">
-        <a th:href="@{https://www.medicalnewstoday.com/articles/322268#heart-health}" target="_blank">
-            <div class="gallery-item">
+    <div class="gallery-container gallery-container-first">
+        <div class="gallery-item gallery-item-article">
+            <a th:href="@{https://www.medicalnewstoday.com/articles/322268#heart-health}" target="_blank">
                 <img th:src="@{/images/articleone.webp}" alt="Article One" width="800" height="600">
                 <h2>Study Shows High-Fiber Diets Can Boost Heart Health</h2>
                 <p>A recent study has found that incorporating high-fiber foods into your diet can have significant
@@ -90,11 +90,12 @@
                     those who consumed the most fiber had a lower risk of cardiovascular disease compared to those who
                     consumed the least. The study also highlighted the importance of a balanced diet that includes a
                     variety of fiber-rich foods such as fruits, vegetables, and whole grains.</p>
-            </div>
-        </a>
+            </a>
+        </div>
 
-        <a th:href="@{https://www.washingtonpost.com/wellness/2022/10/18/healthy-eating-aging/}" target="_blank">
-            <div class="gallery-item">
+
+        <div class="gallery-item gallery-item-article">
+            <a th:href="@{https://www.washingtonpost.com/wellness/2022/10/18/healthy-eating-aging/}" target="_blank">
                 <img th:src="@{/images/how-to-eat-healthy.webp}" alt="Article One" width="800" height="600">
                 <h2>How to Make the Most of Your Diet as You Age</h2>
                 <p>One of the keys to healthy eating as we age is to prioritize nutrient-dense foods, such as leafy
@@ -107,8 +108,9 @@
                     pleasure, whether that's a slice of pizza or a decadent dessert. By taking a mindful, balanced
                     approach
                     to our eating habits, we can nourish our bodies and souls for years to come.</p>
-            </div>
-        </a>
+            </a>
+        </div>
+
     </div>
 
     <hr>
@@ -118,17 +120,19 @@
         <h2 class="gallery-header">Most popular</h2>
         <div class="gallery-container gallery-container-2">
             <div th:each="recipe : ${popularRecipes}" class="gallery-item">
-                <a th:href="@{/recipe/{id}(id=${recipe.recipeId})}">
-                    <img th:src="${recipe.recipeImage}" alt="Gallery item" style="width: 300px; height: 200px;">
-                    <h5 th:text="${recipe.recipeName}"></h5>
-                </a>
-                <button class="addToFavorites addToFavourites" name="addToFavourites"
-                        th:attr="data-recipe-id=${recipe.getRecipeId()}" onclick="addToFavourites(event, null)"
-                        th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'heart-red' : ''">
-                    <i class="fa"
-                       th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'fa-heart' : 'fa-heart-o'"
-                       aria-hidden="true"></i>
-                </button>
+                <div class="image-wrapper"> <!-- Add this div -->
+                    <a th:href="@{/recipe/{id}(id=${recipe.recipeId})}">
+                        <img th:src="${recipe.recipeImage}" alt="Gallery item" style="width: 100%; height: 100%;">
+                    </a>
+                    <button class="addToFavorites addToFavourites" name="addToFavourites"
+                            th:attr="data-recipe-id=${recipe.getRecipeId()}" onclick="addToFavourites(event, null)"
+                            th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'heart-red' : ''">
+                        <i class="fa"
+                           th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'fa-heart' : 'fa-heart-o'"
+                           aria-hidden="true"></i>
+                    </button>
+                </div>
+                <h5 th:text="${recipe.recipeName}"></h5>
             </div>
         </div>
     </div>
@@ -138,17 +142,19 @@
         <h2 class="gallery-header">Latest</h2>
         <div class="gallery-container gallery-container-3">
             <div th:each="recipe : ${latestRecipes}" class="gallery-item">
-                <a th:href="@{/recipe/{id}(id=${recipe.recipeId})}">
-                    <img th:src="${recipe.recipeImage}" alt="Gallery item" style="width: 300px; height: 200px;">
-                    <h5 th:text="${recipe.recipeName}"></h5>
-                </a>
-                <button class="addToFavorites addToFavourites" name="addToFavourites"
-                        th:attr="data-recipe-id=${recipe.getRecipeId()}" onclick="addToFavourites(event, null)"
-                        th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'heart-red' : ''">
-                    <i class="fa"
-                       th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'fa-heart' : 'fa-heart-o'"
-                       aria-hidden="true"></i>
-                </button>
+                <div class="image-wrapper"> <!-- Add this div -->
+                    <a th:href="@{/recipe/{id}(id=${recipe.recipeId})}">
+                        <img th:src="${recipe.recipeImage}" alt="Gallery item" style="width: 100%; height: 100%;">
+                    </a>
+                    <button class="addToFavorites addToFavourites" name="addToFavourites"
+                            th:attr="data-recipe-id=${recipe.getRecipeId()}" onclick="addToFavourites(event, null)"
+                            th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'heart-red' : ''">
+                        <i class="fa"
+                           th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'fa-heart' : 'fa-heart-o'"
+                           aria-hidden="true"></i>
+                    </button>
+                </div>
+                <h5 th:text="${recipe.recipeName}"></h5>
             </div>
         </div>
     </div>
