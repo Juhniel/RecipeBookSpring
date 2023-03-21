@@ -27,7 +27,7 @@
             </div>
         </div>
         <a href="/" class="navbar-brand"> <!-- Add the link to the home page -->
-            <h3>JIKA DEV Juhns version</h3>
+            <img th:src="@{/images/jika-logo-removebg-preview.png}" alt="Logo">
         </a>
     </div>
 
@@ -48,7 +48,7 @@
                 <form action="/logout" method="post" s:authentication="">
                     <a class="profile-dropdown" href="/myProfile">My Profile</a>
                     <a class="profile-dropdown" href="/myFavourites">Favourite Recipes</a>
-                    <a class="profile-dropdown" href="/changePassword">Change Password</a>
+                    <a class="profile-dropdown" href="/settings">Settings</a>
                     <button type="submit">Log Out</button>
                 </form>
             </div>
