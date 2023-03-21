@@ -26,7 +26,9 @@
             </div>
         </div>
         <a href="/" class="navbar-brand"> <!-- Add the link to the home page -->
+
             <img th:src="@{/images/jika-logo-removebg-preview.png}" alt="Logo">
+
         </a>
     </div>
 
@@ -117,6 +119,7 @@
 
 
     <div class="gallery-wrapper">
+
         <h2 class="gallery-header">Most popular</h2>
         <div class="gallery-container gallery-container-2">
             <div th:each="recipe : ${popularRecipes}" class="gallery-item">
