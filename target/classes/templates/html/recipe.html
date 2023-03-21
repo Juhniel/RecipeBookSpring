@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:s="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/recipe.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
+    <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-logo">
+    <div class="dropdown">
+      <div class="hamburger-icon" onclick="toggleDropdown()">
+        <img src="https://recept.se/assets/images/menu/hamburger.svg" alt="Logo">
+      </div>
+      <!-- GÖR OM DIV TILL <a> länkar så att vi skickas till contact.html , about.html och articles.html -->
+      <div class="dropdown-menu" id="dropdown-menu">
+        <a href="/articles" class="dropdown-menu-item">Articles</a>
+        <a href="/about" class="dropdown-menu-item">About us</a>
+        <a href="/contact" class="dropdown-menu-item">Contact us</a>
+      </div>
+    </div>
+    <a href="/" class="navbar-brand"> <!-- Add the link to the home page -->
+      <img th:src="@{/images/jika-logo-removebg-preview.png}" alt="Logo">
+    </a>
+  </div>
+
+  <div class="navbar-menu">
+    <div class="search">
+      <form class="search-form" th:action="@{/search}" method="get">
+        <div class="search-icon" onclick="toggleSearchField()">
+          <img src="https://recept.se/assets/images/menu/search.svg" alt="search icon">
+        </div>
+        <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..." onfocus="this.placeholder=''" onblur="this.placeholder='Search...'">
+      </form>
+    </div>
+    <div class="user">
+      <div class="user-icon" id="user-icon">
+        <img src="https://recept.se/assets/images/icons/user.svg" alt="user icon">
+      </div>
+      <div class="profile-form" id="profileForm">
+        <form action="/logout" method="post" s:authentication="">
+          <a class="profile-dropdown" href="/myProfile">My Profile</a>
+          <a class="profile-dropdown" href="/myFavourites">Favourite Recipes</a>
+          <a class="profile-dropdown" href="/changePassword">Change Password</a>
+          <button type="submit">Log Out</button>
+        </form>
+      </div>
+      <div class="login-form" id="loginForm">
+        <form action="/login" method="post">
+          <input type="text" name="username" placeholder="Username" onfocus="this.placeholder=''" onblur="this.placeholder='Username'" required>
+          <input type="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'" required>
+          <button type="submit">Log in</button>
+        </form>
+        <a href="/createAccount">Create Account</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="header">
+  <img th:src="${recipe.getRecipeImage()}" alt="Recipe image" style="width: 800px; height: 500px;">
+  <h1 th:text="${recipe.getRecipeName()}"></h1>
+</div>
+
+<div class="recipeInfoContainer">
+  <div class="ingredients">
+    <h2>Ingredients:</h2>
+    <ul>
+      <li th:each="ingredient : ${recipe.getRecipeIngredients().substring(1, recipe.getRecipeIngredients().length()-1).split(',')}"
+          th:text="${ingredient}"></li>
+
+    </ul>
+  </div>
+
+  <div class="instructions">
+    <h2>Instructions:</h2>
+    <ol>
+      <li th:each="instruction : ${#strings.arraySplit(recipe.getRecipeInstructions().substring(0, recipe.getRecipeInstructions().length()-1), '\\.\\.')}"
+          th:text="${#strings.substring(instruction, 1)}"></li>
+    </ol>
+  </div>
+</div>
+
+
+</body>
+</html>
