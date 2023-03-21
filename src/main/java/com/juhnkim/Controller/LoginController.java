@@ -71,14 +71,5 @@ public class LoginController {
         return "../templates/html/myProfile";
     }
 
-//    @GetMapping("/changePassword")
-//    public String changePassword(@RequestParam("password") String password,
-//                                 @RequestParam("confirmPassword") String confirmPassword,
-//                                 Model model,
-//                                 HttpSession session){
-//
-//        User user = (User) session.getAttribute("user");
-//    }
-
 }
 
