@@ -27,7 +27,7 @@ public class CreateAccountController {
 
         if(password.equals(confirmPassword)) {
             User user = new User(username, firstName, lastName, password, email);
-            userService.saveUser(user);
+            userService.hashPassword(user);
             model.addAttribute("accountSuccessfullyCreated", "You have succesfully created an account.");
             return "../templates/html/createAccount";
         }else {

@@ -34,17 +34,12 @@ public class UserController {
     }
 
     @PostMapping("/myProfile/update")
-    public String updateMyProfile(@RequestParam("name") String name,
-                                  @RequestParam("profile-pic") MultipartFile profilePic,
+    public String updateMyProfile(@RequestParam("profile-pic") MultipartFile profilePic,
                                   HttpSession session) throws IOException {
         User loggedInUser = (User) session.getAttribute("loggedInUser");
 
         if (loggedInUser == null) {
             return "redirect:/login";
-        }
-
-        if (name != null && !name.trim().isEmpty()) {
-            loggedInUser.setUsername(name.trim());
         }
 
         if (!profilePic.isEmpty()) {

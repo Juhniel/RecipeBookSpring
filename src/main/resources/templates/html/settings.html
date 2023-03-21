@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:s="http://www.thymeleaf.org/extras/spring-security">
 <head>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}">
   <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
   <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
     <meta charset="UTF-8">
@@ -60,5 +61,30 @@
     </div>
   </div>
 </nav>
+
+<div class="container">
+  <h1>Settings</h1>
+  <form action="/settings/update" id="update-settings-form" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="name">Username:</label>
+      <input type="text" id="name" name="name">
+    </div>
+    <div class="form-group">
+      <label for="confirm_name">Confirm Username:</label>
+      <input type="text" id="confirm_name" name="confirm_name">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+    </div>
+    <div class="form-group">
+      <label for="confirm_password">Confirm Password:</label>
+      <input type="password" id="confirm_password" name="confirm_password">
+    </div>
+    <div class="form-group">
+      <input type="submit" id="submit-btn" value="Save">
+    </div>
+  </form>
+</div>
 </body>
 </html>

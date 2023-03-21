@@ -40,19 +40,19 @@ public class User {
         this.username = username;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
-        this.userPassword = setHashedPassword(userPassword);
+        this.userPassword = userPassword;
         this.userEmail = userEmail;
     }
 
 
-    public String setHashedPassword(String password) {
-        // Hash the password using BCrypt
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassword = passwordEncoder.encode(password);
-
-        // Set the hashed password as the new password
-        return hashedPassword;
-    }
+//    public String setHashedPassword(String password) {
+//        // Hash the password using BCrypt
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String hashedPassword = passwordEncoder.encode(password);
+//
+//        // Set the hashed password as the new password
+//        return hashedPassword;
+//    }
     public void setUserId(Long userId) {
         this.userId = userId;
     }
