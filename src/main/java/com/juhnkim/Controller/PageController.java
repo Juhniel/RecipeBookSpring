@@ -4,12 +4,10 @@ import com.juhnkim.Model.Recipe;
 import com.juhnkim.Model.Repository.RecipeRepository;
 import com.juhnkim.Model.User;
 import com.juhnkim.Model.UserFavouriteService;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +25,7 @@ public class PageController {
     @GetMapping("/")
     public String index(org.springframework.ui.Model model, HttpSession session) {
         // popular recipes in index
-        List<Long> popularRecipeIds = Arrays.asList(484L, 486L, 4036L, 4288L);
+        List<Long> popularRecipeIds = Arrays.asList(484L, 1559L, 4036L, 4288L);
         List<Recipe> popularRecipes = (List<Recipe>) recipeRepository.findAllById(popularRecipeIds);
         model.addAttribute("popularRecipes", popularRecipes);
 
