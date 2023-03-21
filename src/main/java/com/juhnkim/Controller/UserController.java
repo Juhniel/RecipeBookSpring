@@ -43,7 +43,9 @@ public class UserController {
             return "redirect:/login";
         }
 
-        loggedInUser.setUsername(name);
+        if (name != null && !name.trim().isEmpty()) {
+            loggedInUser.setUsername(name.trim());
+        }
 
         if (!profilePic.isEmpty()) {
             loggedInUser.setUserProfileImg(profilePic.getBytes());
