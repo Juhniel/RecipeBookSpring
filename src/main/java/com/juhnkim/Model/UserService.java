@@ -2,7 +2,11 @@ package com.juhnkim.Model;
 
 import com.juhnkim.Model.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,6 +17,17 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    public User hashPassword(User user) {
+        // Hash the user's password
+        String hashedPassword = passwordEncoder.encode(user.getUserPassword());
+        user.setUserPassword(hashedPassword);
+
+        // Save the user to the database
+        return userRepository.save(user);
+    }
     public void saveUser(User user) {
         userRepository.save(user);
     }
@@ -29,6 +44,7 @@ public class UserService {
     public Optional<User> findByUserName(String username) {
         return userRepository.findByUsername(username);
     }
+
 }
 
 
