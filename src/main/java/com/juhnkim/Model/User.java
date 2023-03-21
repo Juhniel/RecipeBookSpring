@@ -20,6 +20,10 @@ public class User {
     private String userPassword;
     private String userEmail;
 
+    @Column(name = "user_profile_img")
+    @Lob
+    private byte[] userProfileImg;
+
     @ManyToMany
     @JoinTable(
             name = "userfavouriterecipes",
@@ -96,6 +100,14 @@ public class User {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public byte[] getUserProfileImg() {
+        return userProfileImg;
+    }
+
+    public void setUserProfileImg(byte[] userProfileImg) {
+        this.userProfileImg = userProfileImg;
     }
 
     public List<Recipe> getFavouriteRecipe() {
