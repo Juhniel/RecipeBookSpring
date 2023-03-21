@@ -30,6 +30,9 @@ label {
     font-weight: bold;
 }
 input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="confirmPassword"]
 input[type="file"] {
     display: block;
     width: 100%;
@@ -48,4 +51,13 @@ input[type="submit"] {
 }
 input[type="submit"]:hover {
     background-color: #3e8e41;
+}
+
+.createAccount{
+    padding-top: 100px;
+}
+
+.accountSuccessfullyCreated{
+    font-weight: bolder;
+    font-size: 20px;
 }

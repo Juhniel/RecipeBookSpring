@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>My favourite recipes</title>
-<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/result-recipe.css}">-->
-    <link rel="stylesheet" type="text/css" th:href="@{/css/myFavourites.css}">
 
+    <link rel="stylesheet" type="text/css" th:href="@{/css/myFavourites.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
     <script type="text/javascript" th:src="@{/js/addToFavourites.js}" th:defer="defer"></script>
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
+    <script type="text/javascript" th:src="@{/js/filterFavouriteSearch.js}" th:defer="defer"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
 </head>
 <body>
@@ -16,26 +16,28 @@
 <nav class="navbar">
     <div class="navbar-logo">
         <div class="dropdown">
-            <div class="hamburger-icon">
-                <img src="https://recept.se/assets/images/menu/hamburger.svg" alt="Logo" onclick="toggleDropdown()">
+            <div class="hamburger-icon" onclick="toggleDropdown()">
+                <img src="https://recept.se/assets/images/menu/hamburger.svg" alt="Logo">
             </div>
+            <!-- GÖR OM DIV TILL <a> länkar så att vi skickas till contact.html , about.html och articles.html -->
             <div class="dropdown-menu" id="dropdown-menu">
-                <div class="dropdown-menu-item">Item 1</div>
-                <div class="dropdown-menu-item">Item 2</div>
-                <div class="dropdown-menu-item">Item 3</div>
+                <a href="/articles" class="dropdown-menu-item">Articles</a>
+                <a href="/about" class="dropdown-menu-item">About us</a>
+                <a href="/contact" class="dropdown-menu-item">Contact us</a>
             </div>
         </div>
-        <h3>Your Website Name</h3>
+        <a href="/" class="navbar-brand"> <!-- Add the link to the home page -->
+            <h3>JIKA DEV Juhns version</h3>
+        </a>
     </div>
 
     <div class="navbar-menu">
-
         <div class="search">
             <form class="search-form" th:action="@{/search}" method="get">
                 <div class="search-icon" onclick="toggleSearchField()">
                     <img src="https://recept.se/assets/images/menu/search.svg" alt="search icon">
                 </div>
-                <input type="text" class="search-field" name="searchTerm" placeholder="Search...">
+                <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..." onfocus="this.placeholder=''" onblur="this.placeholder='Search...'">
             </form>
         </div>
         <div class="user">
@@ -52,8 +54,8 @@
             </div>
             <div class="login-form" id="loginForm">
                 <form action="/login" method="post">
-                    <input type="text" name="username" placeholder="Username" required>
-                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="text" name="username" placeholder="Username" onfocus="this.placeholder=''" onblur="this.placeholder='Username'" required>
+                    <input type="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'" required>
                     <button type="submit">Log in</button>
                 </form>
                 <a href="/createAccount">Create Account</a>
@@ -61,9 +63,9 @@
         </div>
     </div>
 </nav>
-
     <div class="favouriteRecipesContainer">
             <h1>Your Favourite Recipes</h1>
+        <input type="text" id="searchInput" placeholder="Search...">
             <p th:if="${#lists.isEmpty(favouriteRecipes)}">No favorite recipes found.</p>
         <div class="recipeGrid">
             <div th:each="favRecipe : ${favouriteRecipes}" class="recipeCard">
