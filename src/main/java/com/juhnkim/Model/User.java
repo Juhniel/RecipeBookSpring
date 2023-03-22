@@ -20,6 +20,10 @@ public class User {
     private String userPassword;
     private String userEmail;
 
+    @Column(name = "user_profile_img")
+    @Lob
+    private byte[] userProfileImg;
+
     @ManyToMany
     @JoinTable(
             name = "userfavouriterecipes",
@@ -36,19 +40,19 @@ public class User {
         this.username = username;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
-        this.userPassword = setHashedPassword(userPassword);
+        this.userPassword = userPassword;
         this.userEmail = userEmail;
     }
 
 
-    public String setHashedPassword(String password) {
-        // Hash the password using BCrypt
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassword = passwordEncoder.encode(password);
-
-        // Set the hashed password as the new password
-        return hashedPassword;
-    }
+//    public String setHashedPassword(String password) {
+//        // Hash the password using BCrypt
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String hashedPassword = passwordEncoder.encode(password);
+//
+//        // Set the hashed password as the new password
+//        return hashedPassword;
+//    }
     public void setUserId(Long userId) {
         this.userId = userId;
     }
@@ -96,6 +100,14 @@ public class User {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public byte[] getUserProfileImg() {
+        return userProfileImg;
+    }
+
+    public void setUserProfileImg(byte[] userProfileImg) {
+        this.userProfileImg = userProfileImg;
     }
 
     public List<Recipe> getFavouriteRecipe() {

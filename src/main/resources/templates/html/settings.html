@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:s="http://www.thymeleaf.org/extras/spring-security">
-
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/recipe.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
-    <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/settings.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
+  <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
+  <script type="text/javascript" th:src="@{/js/settings.js}" th:defer="defer"></script>
     <meta charset="UTF-8">
-    <title>Test</title>
+    <title>Title</title>
 </head>
 <body>
-
 <nav class="navbar">
   <div class="navbar-logo">
     <div class="dropdown">
@@ -34,7 +33,8 @@
         <div class="search-icon" onclick="toggleSearchField()">
           <img src="https://recept.se/assets/images/menu/search.svg" alt="search icon">
         </div>
-        <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..." onfocus="this.placeholder=''" onblur="this.placeholder='Search...'">
+        <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..."
+               onfocus="this.placeholder=''" onblur="this.placeholder='Search...'">
       </form>
     </div>
     <div class="user">
@@ -45,14 +45,16 @@
         <form action="/logout" method="post" s:authentication="">
           <a class="profile-dropdown" href="/myProfile">My Profile</a>
           <a class="profile-dropdown" href="/myFavourites">Favourite Recipes</a>
-          <a class="profile-dropdown" href="/settings">Settings</a>
+          <a class="profile-dropdown" href="/changePassword">Change Password</a>
           <button type="submit">Log Out</button>
         </form>
       </div>
       <div class="login-form" id="loginForm">
         <form action="/login" method="post">
-          <input type="text" name="username" placeholder="Username" onfocus="this.placeholder=''" onblur="this.placeholder='Username'" required>
-          <input type="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'" required>
+          <input type="text" name="username" placeholder="Username" onfocus="this.placeholder=''"
+                 onblur="this.placeholder='Username'" required>
+          <input type="password" name="password" placeholder="Password" onfocus="this.placeholder=''"
+                 onblur="this.placeholder='Password'" required>
           <button type="submit">Log in</button>
         </form>
         <a href="/createAccount">Create Account</a>
@@ -61,31 +63,29 @@
   </div>
 </nav>
 
-
-<div class="header">
-  <img th:src="${recipe.getRecipeImage()}" alt="Recipe image" style="width: 800px; height: 500px;">
-  <h1 th:text="${recipe.getRecipeName()}"></h1>
+<div class="container">
+  <h1>Settings</h1>
+  <form action="/settings/update" id="update-settings-form" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="name">Username:</label>
+      <input type="text" id="name" name="name">
+    </div>
+    <div class="form-group">
+      <label for="confirm_name">Confirm Username:</label>
+      <input type="text" id="confirm_name" name="confirm_name">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+    </div>
+    <div class="form-group">
+      <label for="confirm_password">Confirm Password:</label>
+      <input type="password" id="confirm_password" name="confirm_password">
+    </div>
+    <div class="form-group">
+      <input type="submit" id="submit-btn" value="Save">
+    </div>
+  </form>
 </div>
-
-<div class="recipeInfoContainer">
-  <div class="ingredients">
-    <h2>Ingredients:</h2>
-    <ul>
-      <li th:each="ingredient : ${recipe.getRecipeIngredients().substring(1, recipe.getRecipeIngredients().length()-1).split(',')}"
-          th:text="${ingredient}"></li>
-
-    </ul>
-  </div>
-
-  <div class="instructions">
-    <h2>Instructions:</h2>
-    <ol>
-      <li th:each="instruction : ${#strings.arraySplit(recipe.getRecipeInstructions().substring(0, recipe.getRecipeInstructions().length()-1), '\\.\\.')}"
-          th:text="${#strings.substring(instruction, 1)}"></li>
-    </ol>
-  </div>
-</div>
-
-
 </body>
 </html>

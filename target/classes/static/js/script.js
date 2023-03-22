@@ -62,8 +62,3 @@ function toggleSearchField() {
     }
 }
 
-// Contact-form
-function showSuccessMessage() {
-    document.getElementById("success-message").style.display = "block";
-}
-

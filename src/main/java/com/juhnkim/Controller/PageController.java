@@ -4,12 +4,15 @@ import com.juhnkim.Model.Recipe;
 import com.juhnkim.Model.Repository.RecipeRepository;
 import com.juhnkim.Model.User;
 import com.juhnkim.Model.UserFavouriteService;
-import jakarta.servlet.http.HttpServletResponse;
+import com.juhnkim.Model.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,12 +25,18 @@ public class PageController {
     private RecipeRepository recipeRepository;
 
     @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
     private UserFavouriteService userFavouriteService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/")
     public String index(org.springframework.ui.Model model, HttpSession session) {
         // popular recipes in index
-        List<Long> popularRecipeIds = Arrays.asList(484L, 486L, 4036L, 4288L);
+        List<Long> popularRecipeIds = Arrays.asList(484L, 1559L, 4036L, 4288L);
         List<Recipe> popularRecipes = (List<Recipe>) recipeRepository.findAllById(popularRecipeIds);
         model.addAttribute("popularRecipes", popularRecipes);
 
@@ -61,5 +70,41 @@ public class PageController {
     @GetMapping("/contact")
     public String contactUs() {
         return "../templates/html/contact";
+    }
+
+    @GetMapping("/settings")
+    public String settings() {
+        return "../templates/html/settings";
+    }
+
+    @PostMapping("/settings/update")
+    public String settingsUpdate(@RequestParam("name") String name,
+                                 @RequestParam("password") String password,
+                                 @RequestParam("confirm_password") String confirmPassword,
+                                 HttpSession session, Model model) {
+
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        if (loggedInUser == null) {
+            return "redirect:/login";
+        }
+
+        // Update username
+        if (name != null && !name.trim().isEmpty()) {
+            loggedInUser.setUsername(name.trim());
+        }
+
+        // Update password
+        if (password != null && !password.trim().isEmpty()) {
+            if (password.equals(confirmPassword)) {
+                // You might want to hash the password before saving it
+                loggedInUser.setUserPassword(passwordEncoder.encode(password));
+            } else {
+                model.addAttribute("error", "Passwords do not match.");
+                return "../templates/html/settings";
+            }
+        }
+
+        userService.saveUser(loggedInUser);
+        return "redirect:/settings";
     }
 }
