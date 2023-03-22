@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.mail.MessagingException;
 
 @Controller
 public class CreateAccountController {
@@ -28,7 +27,7 @@ public class CreateAccountController {
             @RequestParam("email") String email,
             @RequestParam("password") String password,
             @RequestParam("confirmPassword") String confirmPassword, Model model
-            ) throws MessagingException {
+            ) {
 
         if(password.equals(confirmPassword)) {
             User user = new User(username, firstName, lastName, password, email);
