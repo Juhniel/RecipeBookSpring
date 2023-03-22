@@ -7,7 +7,6 @@ fileInput.addEventListener('change', function() {
 
     reader.addEventListener('load', function() {
         imagePreview.setAttribute('src', reader.result);
-        imagePreview.style.display = 'block';
     });
     reader.readAsDataURL(file);
 });
