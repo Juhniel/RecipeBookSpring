@@ -73,7 +73,6 @@
             <label for="profile-pic">Profile Picture:</label>
             <div class="avatar-container">
                 <img th:src="${userProfileImageUrl != null && !userProfileImageUrl.isEmpty()} ? ${userProfileImageUrl} : 'https://recept.se/assets/images/icons/user.svg'" alt="Preview" id="imagePreview" class="avatar-preview">
-<!--                <img src="https://recept.se/assets/images/icons/user.svg" alt="Preview" id="imagePreview" class="avatar-preview">-->
                 <canvas id="croppedImageCanvas" class="avatar-preview" style="display: none;"></canvas>
             </div>
             <div class="button-wrapper">
