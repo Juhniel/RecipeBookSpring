@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CreateAccountController {
 
-    //
-//    @Autowired //
+//    @Autowired
 //    private EmailService emailService;
     @Autowired
     private UserService userService;

@@ -1,0 +1,17 @@
+com\juhnkim\Controller\LoginController.class
+com\juhnkim\Model\UserFavouriteRecipes.class
+com\juhnkim\Controller\CreateAccountController.class
+com\juhnkim\Model\RecipeService.class
+com\juhnkim\Controller\RecipeController.class
+com\juhnkim\Model\Repository\RecipeRepository.class
+com\juhnkim\Model\Recipe.class
+com\juhnkim\Controller\PageController.class
+com\juhnkim\Controller\RecipeSearchController.class
+com\juhnkim\Model\UserFavouriteService.class
+com\juhnkim\Model\TastyApi.class
+com\juhnkim\Model\UserService.class
+com\juhnkim\RecipeBookSpringApplication.class
+com\juhnkim\Model\Repository\UserRepository.class
+com\juhnkim\Model\User.class
+com\juhnkim\Controller\FavouritesController.class
+com\juhnkim\Model\Repository\UserFavouriteRecipesRepository.class

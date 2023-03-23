@@ -1,4 +1,4 @@
-//package com.juhnkim.Controller;
+package com.juhnkim.Controller;
 //
 //import org.springframework.mail.SimpleMailMessage;
 //import org.springframework.mail.javamail.JavaMailSender;
