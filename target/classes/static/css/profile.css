@@ -21,8 +21,47 @@ h1 {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.avatar-container {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.avatar-preview {
+    object-fit: cover;
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button-wrapper {
+    text-align: center;
+    margin: 20px;
+}
+
 .form-group {
     margin-bottom: 20px;
+    text-align: center;
 }
 label {
     display: block;
