@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 
@@ -26,8 +27,14 @@ public class UserController {
         // retrieve the logged-in user's information from the session
         User loggedInUser = (User) session.getAttribute("loggedInUser");
         List<Recipe> favouriteRecipes = loggedInUser.getFavouriteRecipe();
-        // add the user's information to the model
+
+        // convert the userProfileImg bytes to a base64 encoded string
+        byte[] userProfileImg = loggedInUser.getUserProfileImg();
+        String userProfileImgBase64 = userProfileImg != null ? Base64.getEncoder().encodeToString(userProfileImg) : null;
+
+        // add the user's information and the image URL to the model
         model.addAttribute("favouriteRecipes", favouriteRecipes);
+        model.addAttribute("userProfileImageUrl", userProfileImgBase64 != null ? "data:image/png;base64," + userProfileImgBase64 : null);
 
         // return the view for the profile page
         return "../templates/html/myProfile";
