@@ -42,7 +42,8 @@
         </div>
         <div class="user">
             <div class="user-icon" id="user-icon">
-                <img src="https://recept.se/assets/images/icons/user.svg" alt="user icon">
+                <img th:if="${loggedInUser == null or loggedInUser.userProfileImg == null}" src="https://recept.se/assets/images/icons/user.svg" alt="user icon">
+                <img th:if="${loggedInUser != null and loggedInUser.userProfileImg != null}" th:src="'data:image/png;base64,' + ${thymeleafUtil.encodeToBase64(loggedInUser.userProfileImg)}" alt="user icon">
             </div>
             <div class="profile-form" id="profileForm">
                 <form action="/logout" method="post" s:authentication="">

@@ -1,10 +1,11 @@
 package com.juhnkim.Controller;
 
-import com.juhnkim.Model.Recipe;
+import com.juhnkim.Model.Entity.Recipe;
 import com.juhnkim.Model.Repository.RecipeRepository;
-import com.juhnkim.Model.User;
-import com.juhnkim.Model.UserFavouriteService;
-import com.juhnkim.Model.UserService;
+import com.juhnkim.Model.Entity.User;
+import com.juhnkim.Model.Service.UserFavouriteService;
+import com.juhnkim.Model.Entity.UserService;
+import com.juhnkim.Model.Utils.ThymeleafUtil;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-public class PageController {
+public class PageController extends BaseController{
 
     @Autowired
     private RecipeRepository recipeRepository;
@@ -48,8 +49,11 @@ public class PageController {
         // Initialize an empty list of favoriteRecipeIds
         List<Long> favoriteRecipeIds = new ArrayList<>();
 
+        // Add new ThymeleafUtil instance to the model
+        model.addAttribute("thymeleafUtil", new ThymeleafUtil());
         if (session.getAttribute("loggedInUser") != null) {
             User loggedInUser = (User) session.getAttribute("loggedInUser");
+            model.addAttribute("loggedInUser", loggedInUser);
             favoriteRecipeIds = userFavouriteService.getFavouriteRecipeIds(loggedInUser.getUserId());
         }
 
@@ -58,22 +62,26 @@ public class PageController {
     }
 
     @GetMapping("/articles")
-    public String articles() {
+    public String articles(Model model, HttpSession session) {
+        addLoggedInUser(model, session);
         return "../templates/html/articles";
     }
 
     @GetMapping("/about")
-    public String aboutUs() {
+    public String aboutUs(Model model, HttpSession session) {
+        addLoggedInUser(model, session);
         return "../templates/html/about";
     }
 
     @GetMapping("/contact")
-    public String contactUs() {
+    public String contactUs(Model model, HttpSession session) {
+        addLoggedInUser(model, session);
         return "../templates/html/contact";
     }
 
     @GetMapping("/settings")
-    public String settings() {
+    public String settings(Model model, HttpSession session) {
+        addLoggedInUser(model, session);
         return "../templates/html/settings";
     }
 

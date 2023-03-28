@@ -1,7 +1,7 @@
-package com.juhnkim.Model;
+package com.juhnkim.Model.Entity;
 
+import com.juhnkim.Model.Entity.Recipe;
 import jakarta.persistence.*;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;

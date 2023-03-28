@@ -35,7 +35,7 @@ input[type="password"],
 input[type="confirmPassword"]
 input[type="file"] {
     display: block;
-    width: 100%;
+    width: 90%;
     padding: 10px;
     border-radius: 5px;
     border: none;
