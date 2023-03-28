@@ -39,7 +39,7 @@ function toggleDropdown() {
     let logoImg = document.querySelector('.dropdown img');
 
     if (dropdownMenu.style.display === "none") {
-        dropdownMenu.style.display = "block";
+        dropdownMenu.style.display = "flex";
         logoImg.src = "https://recept.se/assets/images/menu/close.svg";
     } else {
         dropdownMenu.style.display = "none";
@@ -60,5 +60,10 @@ function toggleSearchField() {
         searchField.style.display = "none";
         searchIcon.src = "https://recept.se/assets/images/menu/search.svg";
     }
+}
+
+// Contact-form
+function showSuccessMessage() {
+    document.getElementById("success-message").style.display = "block";
 }
 

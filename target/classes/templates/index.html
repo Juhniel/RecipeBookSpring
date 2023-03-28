@@ -5,6 +5,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
+    <script type="text/javascript" th:src="@{/js/addToFavourites.js}" th:defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -16,44 +18,46 @@
             <div class="hamburger-icon" onclick="toggleDropdown()">
                 <img src="https://recept.se/assets/images/menu/hamburger.svg" alt="Logo">
             </div>
-            <!-- GÖR OM DIV TILL <a> länkar så att vi skickas till contact.html , aboutUs.html och articles.html -->
-            <div class="dropdown-menu" id="dropdown-menu">
-                <div class="dropdown-menu-item">Articles</div>
-                <div class="dropdown-menu-item">About us</div>
-                <div class="dropdown-menu-item">Contact us</div>
+            <!-- GÖR OM DIV TILL <a> länkar så att vi skickas till contact.html , about.html och articles.html -->
+            <div class="dropdown-menu" id="dropdown-menu" style="display:none">
+                <a href="/articles" class="dropdown-menu-item">Articles</a>
+                <a href="/about" class="dropdown-menu-item">About us</a>
+                <a href="/contact" class="dropdown-menu-item">Contact us</a>
             </div>
         </div>
         <a href="/" class="navbar-brand"> <!-- Add the link to the home page -->
-            <h3>JIKA DEV</h3>
+            <img th:src="@{/images/jika-logo-removebg-preview.png}" alt="Logo">
         </a>
     </div>
 
     <div class="navbar-menu">
-
         <div class="search">
             <form class="search-form" th:action="@{/search}" method="get">
                 <div class="search-icon" onclick="toggleSearchField()">
                     <img src="https://recept.se/assets/images/menu/search.svg" alt="search icon">
                 </div>
-                <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..." onfocus="this.placeholder=''" onblur="this.placeholder='Search...'">
+                <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..." style="display: none">
             </form>
         </div>
         <div class="user">
             <div class="user-icon" id="user-icon">
-                <img src="https://recept.se/assets/images/icons/user.svg" alt="user icon">
+                <img th:if="${loggedInUser == null or loggedInUser.userProfileImg == null}" src="https://recept.se/assets/images/icons/user.svg" alt="user icon" id="user-icon-preview">
+                <img th:if="${loggedInUser != null and loggedInUser.userProfileImg != null}" th:src="'data:image/png;base64,' + ${thymeleafUtil.encodeToBase64(loggedInUser.userProfileImg)}" alt="user icon">
             </div>
-            <div class="profile-form" id="profileForm">
+            <div class="profile-form" id="profileForm" style="display:none">
                 <form action="/logout" method="post" s:authentication="">
                     <a class="profile-dropdown" href="/myProfile">My Profile</a>
                     <a class="profile-dropdown" href="/myFavourites">Favourite Recipes</a>
-                    <a class="profile-dropdown" href="/changePassword">Change Password</a>
+                    <a class="profile-dropdown" href="/settings">Settings</a>
                     <button type="submit">Log Out</button>
                 </form>
             </div>
-            <div class="login-form" id="loginForm">
+            <div class="login-form" id="loginForm" style="display: none">
                 <form action="/login" method="post">
-                    <input type="text" name="username" placeholder="Username" onfocus="this.placeholder=''" onblur="this.placeholder='Username'" required>
-                    <input type="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'" required>
+                    <input type="text" name="username" placeholder="Username" onfocus="this.placeholder=''"
+                           onblur="this.placeholder='Username'" required>
+                    <input type="password" name="password" placeholder="Password" onfocus="this.placeholder=''"
+                           onblur="this.placeholder='Password'" required>
                     <button type="submit">Log in</button>
                 </form>
                 <a href="/createAccount">Create Account</a>
@@ -67,7 +71,8 @@
         <h1>Welcome to your website</h1>
         <p>Find delicious recipes for every occasion</p>
         <form class="search-form" th:action="@{/search}" method="get">
-            <input type="text" name="searchTerm" placeholder="Search for recipes..." onfocus="this.placeholder=''" onblur="this.placeholder='Search for recipes...'">
+            <input type="text" name="searchTerm" placeholder="Search for recipes..." onfocus="this.placeholder=''"
+                   onblur="this.placeholder='Search for recipes...'">
             <button type="submit">Search</button>
         </form>
     </div>
@@ -75,80 +80,87 @@
 
 
 <section class="gallery">
-    <div class="gallery-container">
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 1">
-            <h2>Gallery Item 1</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
+    <div class="gallery-container gallery-container-first">
+        <div class="gallery-item gallery-item-article">
+            <a th:href="@{https://www.medicalnewstoday.com/articles/322268#heart-health}" target="_blank">
+                <img th:src="@{/images/articleone.webp}" alt="Article One" width="800" height="600">
+                <h2>Study Shows High-Fiber Diets Can Boost Heart Health</h2>
+                <p>A recent study has found that incorporating high-fiber foods into your diet can have significant
+                    benefits for heart health. Researchers analyzed the data of over 11,000 participants and found that
+                    those who consumed the most fiber had a lower risk of cardiovascular disease compared to those who
+                    consumed the least. The study also highlighted the importance of a balanced diet that includes a
+                    variety of fiber-rich foods such as fruits, vegetables, and whole grains.</p>
+            </a>
         </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 2">
-            <h2>Gallery Item 2</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
+
+
+        <div class="gallery-item gallery-item-article">
+            <a th:href="@{https://www.washingtonpost.com/wellness/2022/10/18/healthy-eating-aging/}" target="_blank">
+                <img th:src="@{/images/how-to-eat-healthy.webp}" alt="Article One" width="800" height="600">
+                <h2>How to Make the Most of Your Diet as You Age</h2>
+                <p>One of the keys to healthy eating as we age is to prioritize nutrient-dense foods, such as leafy
+                    greens,
+                    lean protein, and whole grains. These foods provide the vitamins, minerals, and fiber our bodies
+                    need to
+                    function at their best, and can also help prevent chronic conditions such as heart disease and type
+                    2
+                    diabetes. However, it's also important to balance our diets with foods we enjoy and that bring us
+                    pleasure, whether that's a slice of pizza or a decadent dessert. By taking a mindful, balanced
+                    approach
+                    to our eating habits, we can nourish our bodies and souls for years to come.</p>
+            </a>
         </div>
+
     </div>
 
     <hr>
 
-    <h2>Gallery 1</h2>
-    <div class="gallery-container">
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 1">
-            <h2>Gallery Item 1</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 2">
-            <h2>Gallery Item 2</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 3">
-            <h2>Gallery Item 3</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 4">
-            <h2>Gallery Item 4</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
+
+    <div class="gallery-wrapper">
+        <h2 class="gallery-header">Most popular</h2>
+        <div class="gallery-container gallery-container-2">
+            <div th:each="recipe : ${popularRecipes}" class="gallery-item">
+                <div class="image-wrapper"> <!-- Add this div -->
+                    <a th:href="@{/recipe/{id}(id=${recipe.recipeId})}">
+                        <img th:src="${recipe.recipeImage}" alt="Gallery item" style="width: 100%; height: 100%;">
+                    </a>
+                    <button class="addToFavorites addToFavourites" name="addToFavourites"
+                            th:attr="data-recipe-id=${recipe.getRecipeId()}" onclick="addToFavourites(event, null)"
+                            th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'heart-red' : ''">
+                        <i class="fa"
+                           th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'fa-heart' : 'fa-heart-o'"
+                           aria-hidden="true"></i>
+                    </button>
+                </div>
+                <h5 th:text="${recipe.recipeName}"></h5>
+            </div>
         </div>
     </div>
 
-    <h2>Gallery 2</h2>
-    <div class="gallery-container">
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 5">
-            <h2>Gallery Item 5</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 6">
-            <h2>Gallery Item 6</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 7">
-            <h2>Gallery Item 7</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/800x600" alt="Gallery item 8">
-            <h2>Gallery Item 8</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
+
+    <div class="gallery-wrapper gallery-wrapper-2">
+        <h2 class="gallery-header">Latest</h2>
+        <div class="gallery-container gallery-container-3">
+            <div th:each="recipe : ${latestRecipes}" class="gallery-item">
+                <div class="image-wrapper"> <!-- Add this div -->
+                    <a th:href="@{/recipe/{id}(id=${recipe.recipeId})}">
+                        <img th:src="${recipe.recipeImage}" alt="Gallery item" style="width: 100%; height: 100%;">
+                    </a>
+                    <button class="addToFavorites addToFavourites" name="addToFavourites"
+                            th:attr="data-recipe-id=${recipe.getRecipeId()}" onclick="addToFavourites(event, null)"
+                            th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'heart-red' : ''">
+                        <i class="fa"
+                           th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'fa-heart' : 'fa-heart-o'"
+                           aria-hidden="true"></i>
+                    </button>
+                </div>
+                <h5 th:text="${recipe.recipeName}"></h5>
+            </div>
         </div>
     </div>
 
-    <h1>TESTING TESTING</h1>
+
 </section>
+
 </body>
 </html>

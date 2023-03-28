@@ -3,6 +3,7 @@ package com.juhnkim.Model;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.juhnkim.Model.Repository.RecipeRepository;
+import com.juhnkim.Model.Entity.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

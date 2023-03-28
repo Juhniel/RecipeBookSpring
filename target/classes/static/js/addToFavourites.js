@@ -1,8 +1,5 @@
-
 function addToFavourites(event) {
     event.preventDefault(); // prevent the default form submission
-    // const heartIcon = document.querySelector(".addToFavorites i");
-    // const heartIcon = event.target.querySelector("i"); // get the heart icon inside the button
 
     let heartIcon;
     if (event.target.classList.contains("addToFavorites")) {
@@ -10,7 +7,6 @@ function addToFavourites(event) {
     } else {
         heartIcon = event.target;
     }
-
 
     const recipeId = event.target.closest(".addToFavorites").getAttribute('data-recipe-id'); // get the recipe ID from the data-attribute
     fetch(`/favourites/add?recipeId=${recipeId}`, {

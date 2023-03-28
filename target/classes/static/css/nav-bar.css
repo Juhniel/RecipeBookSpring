@@ -1,4 +1,9 @@
 /* Style the navbar container */
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap);
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
 .navbar {
     position: fixed;
     top: 0;
@@ -14,7 +19,6 @@
     z-index: 2; /* Make sure the navbar appears on top of the dropdown menu */
 }
 
-
 /* Logo and menu items container */
 .navbar-logo {
     display: flex;
@@ -22,8 +26,11 @@
 }
 
 .navbar-logo img {
-    width: 40px;
-    height: 40px;
+    width: 120px;
+    height: 120px;
+    margin-right: 10px;
+}
+.navbar-brand{
     margin-right: 10px;
 }
 
@@ -47,13 +54,11 @@
     color: inherit;
 }
 
-
 .navbar-menu-item:hover {
     color: #cceeff;
 }
 
 /*SEARCH FORM*/
-
 .search-form {
     text-align: center;
     margin-top: 30px;
@@ -88,19 +93,6 @@
 .search-form input[type="text"].navbar-search-field::placeholder { /* Standard */
     font-size: 16px; /* increased font size */
     text-align: left; /* align placeholder text to the left */
-}
-
-.search-form button[type="submit"] {
-    width: 100px;
-    height: 36px; /* adjusted height to match the search field */
-    font-size: 16px;
-    background-color: #d87f7f;
-    color: #fff;
-    border: none;
-    border-top-right-radius: 5px; /* apply border-radius only to the right side */
-    border-bottom-right-radius: 5px;
-    cursor: pointer;
-    outline: none;
 }
 
 
@@ -142,9 +134,7 @@
     height: 30px;
 }
 
-
 /* Dropdown menu container */
-
 .hamburger-icon {
     background-color: #fff;
     border-radius: 50%;
@@ -165,8 +155,6 @@
     left: 5px; /* Adjust the position of the image */
 }
 
-
-
 .dropdown {
     position: relative;
     display: inline-block;
@@ -176,20 +164,18 @@
 .dropdown-menu {
     display: none;
     position: fixed;
-    top: 4.3rem; /* Change this to match the height of your navbar */
+    top: 4.3rem;
     left: 0;
     width: 100%;
-    height: 30vh; /* Change this to adjust the height of the menu */
-    /*height: calc(100vh - 6rem); !* Change this to adjust the height of the menu *!*/
+    height: 160px;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1;
-
-    /* Custom styles */
     padding: 1rem;
     box-sizing: border-box;
+    flex-direction: column; /* Added this line */
+    align-items: flex-start; /* Added this line */
 }
-
 
 .dropdown-menu.show {
     display: block;
@@ -200,13 +186,12 @@
     font-size: 16px;
     cursor: pointer;
     color: black;
+    text-decoration: none;
 }
 
 .dropdown-menu-item:hover {
     background-color: #f2f2f2;
 }
-
-
 
 /* Custom animation */
 @keyframes dropdown-menu-animation {
@@ -260,7 +245,6 @@
     padding: 10px; /* increase the padding on focus */
 }
 
-
 /* User container */
 .user {
     display: flex;
@@ -280,8 +264,14 @@
 }
 
 .user-icon img {
-    width: 20px;
-    height: 20px;
+    object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+#user-icon-preview {
+    object-fit: none;
 }
 
 .login-form {
@@ -324,6 +314,7 @@
 .search-form {
     display: flex;
     max-width: 50rem;
+    /*width: 200px;*/
     margin: 0 auto;
     position: relative;
 }
@@ -356,7 +347,9 @@
     background-color: #f65555;
 }
 
-
+.profile-form, .login-form, .dropdown-menu{
+    transition: all 0.3s ease;
+}
 /* Media query for smaller screens */
 @media (max-width: 768px) {
     .search-form input[type="text"] {
