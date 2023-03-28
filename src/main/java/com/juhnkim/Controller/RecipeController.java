@@ -1,8 +1,9 @@
 package com.juhnkim.Controller;
 
-import com.juhnkim.Model.Recipe;
+import com.juhnkim.Model.Entity.Recipe;
 import com.juhnkim.Model.Repository.RecipeRepository;
 import com.juhnkim.Model.TastyApi;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,21 +11,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-import java.util.List;
 import java.util.Optional;
 
 
 @Controller
-public class RecipeController {
+public class RecipeController extends BaseController{
 
     @Autowired
     private RecipeRepository recipeRepository;
 
     @GetMapping("/recipe/{id}")
-    public String getRecipe(@PathVariable Long id, Model model) {
+    public String getRecipe(@PathVariable Long id, Model model, HttpSession session) {
         Optional<Recipe> recipe = recipeRepository.findById(id);
         if (recipe.isPresent()) {
             model.addAttribute("recipe", recipe.get());
+            addLoggedInUser(model,session);
             return "../templates/html/recipe";
         } else {
             model.addAttribute("errorMessage", "Recipe not found");

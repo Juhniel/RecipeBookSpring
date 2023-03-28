@@ -1,9 +1,12 @@
 package com.juhnkim.Controller;
 
-import com.juhnkim.Model.*;
+import com.fasterxml.jackson.databind.ser.Serializers;
+import com.juhnkim.Model.Entity.User;
 import com.juhnkim.Model.Repository.UserFavouriteRecipesRepository;
 
 
+import com.juhnkim.Model.Service.UserFavouriteRecipes;
+import com.juhnkim.Model.Service.UserFavouriteService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,7 +21,7 @@ import java.util.Map;
 
 
 @Controller
-public class FavouritesController {
+public class FavouritesController extends BaseController {
 
     @Autowired
     private UserFavouriteService userFavouriteService;
@@ -84,6 +87,7 @@ public class FavouritesController {
         User loggedInUser = (User) session.getAttribute("loggedInUser");
         List<UserFavouriteRecipes> favouriteRecipes = userFavouriteRecipesRepository.findByUserUserId(loggedInUser.getUserId());
         model.addAttribute("favouriteRecipes", favouriteRecipes);
+        addLoggedInUser(model, session);
         return "../templates/html/myFavourites";
     }
 }

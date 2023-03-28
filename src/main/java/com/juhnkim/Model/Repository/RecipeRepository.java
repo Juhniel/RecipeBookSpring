@@ -1,7 +1,6 @@
 package com.juhnkim.Model.Repository;
 
-import com.juhnkim.Model.Recipe;
-import org.springframework.data.jdbc.repository.query.Query;
+import com.juhnkim.Model.Entity.Recipe;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
