@@ -4,7 +4,9 @@
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/recipe.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
+    <script type="text/javascript" th:src="@{/js/recipeComments.js}" th:defer="defer"></script>
     <meta charset="UTF-8">
     <title>Test</title>
 </head>
@@ -83,9 +85,50 @@
   <div class="instructions">
     <h2>Instructions:</h2>
     <ol>
-      <li th:each="instruction : ${#strings.arraySplit(recipe.getRecipeInstructions().substring(0, recipe.getRecipeInstructions().length()-1), '\\.\\.')}"
-          th:text="${#strings.substring(instruction, 1)}"></li>
+      <li th:if="${recipe.getRecipeInstructions() != null and !recipe.getRecipeInstructions().isEmpty()}"
+          th:each="instruction : ${#strings.arraySplit(#strings.replace(#strings.substring(recipe.getRecipeInstructions(), 1, #strings.length(recipe.getRecipeInstructions()) - 1), ', Enjoy', ' Enjoy'), '\\.\\.')}"
+          th:text="${instruction}"></li>
     </ol>
+  </div>
+
+<div class="comment-section">
+  <h2>Comments</h2>
+  <div class="comment-list">
+    <ul>
+      <li th:each="comment : ${comments}">
+        <div class="comment-header">
+          <div>
+            <strong class="username" th:text="${comment.user.username}">Username</strong>
+            <span class="social-icons">
+              <a th:if="${loggedInUser != null and loggedInUser.getUserFacebook() != null}" th:href="${loggedInUser.getUserFacebook()}" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+              <a th:if="${loggedInUser == null or loggedInUser.getUserFacebook() == null}" style="pointer-events:none;opacity:0.5"><i class="fab fa-facebook"></i></a>
+
+              <a th:if="${loggedInUser != null and loggedInUser.getUserInstagram() != null}" th:href="${loggedInUser.getUserInstagram()}" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+              <a th:if="${loggedInUser == null or loggedInUser.getUserInstagram() == null}" style="pointer-events:none;opacity:0.5"><i class="fab fa-instagram"></i></a>
+
+              <a th:if="${loggedInUser != null and loggedInUser.getUserTikTok() != null}" th:href="${loggedInUser.getUserTikTok()}" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+              <a th:if="${loggedInUser == null or loggedInUser.getUserTikTok() == null}" style="pointer-events:none;opacity:0.5"><i class="fab fa-tiktok"></i></a>
+            </span>
+          </div>
+          <div class="date-time">
+            <span th:text="${#temporals.format(comment.createdAt, 'yyyy-MM-dd')}">Comment date</span><br>
+            <span th:text="${#temporals.format(comment.createdAt, 'HH:mm:ss')}">Comment time</span>
+          </div>
+        </div>
+        <p class="comment-content" th:text="${comment.content}">Comment content</p>
+      </li>
+    </ul>
+  </div>
+</div>
+  <div class="comment-form" th:if="${loggedInUser != null}">
+    <form action="/addComment" method="post">
+      <input type="hidden" name="recipeId" th:value="${recipe.getRecipeId()}">
+      <textarea name="comment" placeholder="Write your comment here..." onfocus="this.placeholder=''" onblur="this.placeholder='Write your comment here...'" required></textarea>
+      <button type="submit">Post Comment</button>
+    </form>
+  </div>
+  <div class="login-to-comment" th:if="${loggedInUser == null}">
+    <p>Please <a href="/login">log in</a> to post a comment.</p>
   </div>
 </div>
 

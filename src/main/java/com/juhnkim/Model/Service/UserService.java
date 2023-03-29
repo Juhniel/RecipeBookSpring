@@ -1,4 +1,4 @@
-package com.juhnkim.Model.Entity;
+package com.juhnkim.Model.Service;
 
 import com.juhnkim.Model.Entity.User;
 import com.juhnkim.Model.Repository.UserRepository;

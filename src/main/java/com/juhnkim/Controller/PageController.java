@@ -4,7 +4,7 @@ import com.juhnkim.Model.Entity.Recipe;
 import com.juhnkim.Model.Repository.RecipeRepository;
 import com.juhnkim.Model.Entity.User;
 import com.juhnkim.Model.Service.UserFavouriteService;
-import com.juhnkim.Model.Entity.UserService;
+import com.juhnkim.Model.Service.UserService;
 import com.juhnkim.Model.Utils.ThymeleafUtil;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
