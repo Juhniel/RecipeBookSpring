@@ -13,6 +13,7 @@
     <title>Title</title>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-logo">
     <div class="dropdown">
@@ -20,7 +21,7 @@
         <img src="https://recept.se/assets/images/menu/hamburger.svg" alt="Logo">
       </div>
       <!-- GÖR OM DIV TILL <a> länkar så att vi skickas till contact.html , about.html och articles.html -->
-      <div class="dropdown-menu" id="dropdown-menu">
+      <div class="dropdown-menu" id="dropdown-menu" style="display:none">
         <a href="/articles" class="dropdown-menu-item">Articles</a>
         <a href="/about" class="dropdown-menu-item">About us</a>
         <a href="/contact" class="dropdown-menu-item">Contact us</a>
@@ -37,23 +38,23 @@
         <div class="search-icon" onclick="toggleSearchField()">
           <img src="https://recept.se/assets/images/menu/search.svg" alt="search icon">
         </div>
-        <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..."
-               onfocus="this.placeholder=''" onblur="this.placeholder='Search...'">
+        <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..." style="display: none">
       </form>
     </div>
     <div class="user">
       <div class="user-icon" id="user-icon">
-        <img src="https://recept.se/assets/images/icons/user.svg" alt="user icon">
+        <img th:if="${loggedInUser == null or loggedInUser.userProfileImg == null}" src="https://recept.se/assets/images/icons/user.svg" alt="user icon" id="user-icon-preview">
+        <img th:if="${loggedInUser != null and loggedInUser.userProfileImg != null}" th:src="'data:image/png;base64,' + ${thymeleafUtil.encodeToBase64(loggedInUser.userProfileImg)}" alt="user icon">
       </div>
-      <div class="profile-form" id="profileForm">
+      <div class="profile-form" id="profileForm" style="display:none">
         <form action="/logout" method="post" s:authentication="">
           <a class="profile-dropdown" href="/myProfile">My Profile</a>
           <a class="profile-dropdown" href="/myFavourites">Favourite Recipes</a>
-          <a class="profile-dropdown" href="/changePassword">Change Password</a>
+          <a class="profile-dropdown" href="/settings">Settings</a>
           <button type="submit">Log Out</button>
         </form>
       </div>
-      <div class="login-form" id="loginForm">
+      <div class="login-form" id="loginForm" style="display: none">
         <form action="/login" method="post">
           <input type="text" name="username" placeholder="Username" onfocus="this.placeholder=''"
                  onblur="this.placeholder='Username'" required>

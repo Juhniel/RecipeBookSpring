@@ -1,20 +1,16 @@
 package com.juhnkim.Controller;
 
-import com.juhnkim.Model.Recipe;
 import com.juhnkim.Model.Repository.UserRepository;
-import com.juhnkim.Model.User;
-import com.juhnkim.Model.UserService;
+import com.juhnkim.Model.Entity.User;
+import com.juhnkim.Model.Entity.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
-import java.util.Optional;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -28,7 +24,7 @@ public class LoginController {
     @PostMapping("/login")
     public String userLogin(@RequestParam("username") String username,
                             @RequestParam("password") String password,
-                            Model model,
+                            RedirectAttributes redirectAttributes,
                             HttpSession session) {
         // call authenticateUser method of UserService
 
@@ -41,7 +37,7 @@ public class LoginController {
             return "redirect:/";
         } else {
             // redirect to the login page with an error message upon failed authentication
-            model.addAttribute("errorUserLogin", "Check your username and password"); //Returna till ett error meddelande med model attribute
+            redirectAttributes.addFlashAttribute("errorUserLogin", "Check your username and password"); //Returna till ett error meddelande med model attribute
             return "redirect:/";
         }
     }

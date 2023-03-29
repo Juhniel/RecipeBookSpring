@@ -1,4 +1,4 @@
-package com.juhnkim.Model;
+package com.juhnkim.Model.Entity;
 
 import jakarta.persistence.*;
 

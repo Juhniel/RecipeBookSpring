@@ -1,6 +1,6 @@
 package com.juhnkim.Model.Repository;
 
-import com.juhnkim.Model.User;
+import com.juhnkim.Model.Entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

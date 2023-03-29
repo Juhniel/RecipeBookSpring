@@ -167,7 +167,7 @@
     top: 4.3rem;
     left: 0;
     width: 100%;
-    height: 30vh;
+    height: 160px;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -264,8 +264,14 @@
 }
 
 .user-icon img {
-    width: 20px;
-    height: 20px;
+    object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+#user-icon-preview {
+    object-fit: none;
 }
 
 .login-form {
@@ -308,6 +314,7 @@
 .search-form {
     display: flex;
     max-width: 50rem;
+    /*width: 200px;*/
     margin: 0 auto;
     position: relative;
 }
@@ -340,6 +347,9 @@
     background-color: #f65555;
 }
 
+.profile-form, .login-form, .dropdown-menu{
+    transition: all 0.3s ease;
+}
 /* Media query for smaller screens */
 @media (max-width: 768px) {
     .search-form input[type="text"] {
