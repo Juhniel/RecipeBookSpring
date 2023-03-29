@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/loginPopup.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/result-recipe.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
-    <script type="text/javascript" th:src="@{/js/addToFavourites.js}" th:defer></script>
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
+    <script type="text/javascript" th:src="@{/js/addToFavourites.js}" th:defer></script>
     <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
 </head>
 <body>
@@ -83,7 +83,7 @@
                     <h2 class="recipeTitle" th:text="${recipe.getRecipeName()}"></h2>
                 </a>
                 <button class="addToFavorites" name="addToFavourites" id="addToFavourites"
-                        th:attr="data-recipe-id=${recipe.getRecipeId()}" onclick="addToFavourites(event)"
+                        th:attr="data-recipe-id=${recipe.getRecipeId()}"
                         th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'heart-red' : ''">
                     <i class="fa"
                        th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'fa-heart' : 'fa-heart-o'"
