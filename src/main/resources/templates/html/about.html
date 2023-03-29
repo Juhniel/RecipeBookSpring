@@ -32,13 +32,17 @@
                 <div class="search-icon" onclick="toggleSearchField()">
                     <img src="https://recept.se/assets/images/menu/search.svg" alt="search icon">
                 </div>
-                <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..." style="display: none">
+                <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..."
+                       style="display: none">
             </form>
         </div>
         <div class="user">
             <div class="user-icon" id="user-icon">
-                <img th:if="${loggedInUser == null or loggedInUser.userProfileImg == null}" src="https://recept.se/assets/images/icons/user.svg" alt="user icon" id="user-icon-preview">
-                <img th:if="${loggedInUser != null and loggedInUser.userProfileImg != null}" th:src="'data:image/png;base64,' + ${thymeleafUtil.encodeToBase64(loggedInUser.userProfileImg)}" alt="user icon">
+                <img th:if="${loggedInUser == null or loggedInUser.userProfileImg == null}"
+                     src="https://recept.se/assets/images/icons/user.svg" alt="user icon" id="user-icon-preview">
+                <img th:if="${loggedInUser != null and loggedInUser.userProfileImg != null}"
+                     th:src="'data:image/png;base64,' + ${thymeleafUtil.encodeToBase64(loggedInUser.userProfileImg)}"
+                     alt="user icon">
             </div>
             <div class="profile-form" id="profileForm" style="display:none">
                 <form action="/logout" method="post" s:authentication="">
@@ -65,8 +69,19 @@
 <div class="container">
     <h1>About Us</h1>
     <img src="https://example.com/images/team.jpg" alt="Our Team">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lobortis, lorem sit amet interdum tristique, dui urna convallis turpis, et aliquet sapien elit eget eros. Sed pellentesque gravida urna, vel fringilla eros ultricies id. Aliquam quis tellus sem. Integer imperdiet orci nec augue hendrerit, non pulvinar enim lacinia. Suspendisse vel finibus mauris, ac blandit arcu. Suspendisse vitae magna ac enim commodo elementum. Donec sollicitudin lectus ut tortor accumsan, non imperdiet nisi tristique. Etiam malesuada sapien ut augue bibendum convallis. Proin ullamcorper ultrices erat, id cursus nisl fermentum a. Fusce suscipit vel sapien nec malesuada.</p>
-    <p>Nullam congue ante id urna lacinia posuere. Vivamus nec blandit dolor. Fusce vitae est justo. Nulla facilisi. Sed posuere lectus non mauris vehicula, vel consequat nisi efficitur. Duis laoreet ullamcorper dui at molestie. Proin vestibulum mi vel lectus tristique, vitae posuere velit congue. Fusce mollis sapien sed eros lobortis, quis rutrum eros facilisis. Donec gravida eleifend turpis, vel efficitur tortor aliquet a. Aenean volutpat lacus quis ante facilisis maximus. Donec iaculis, mi et lacinia tincidunt, turpis nisi dictum magna, nec feugiat lectus magna id metus.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lobortis, lorem sit amet interdum tristique, dui
+        urna convallis turpis, et aliquet sapien elit eget eros. Sed pellentesque gravida urna, vel fringilla eros
+        ultricies id. Aliquam quis tellus sem. Integer imperdiet orci nec augue hendrerit, non pulvinar enim lacinia.
+        Suspendisse vel finibus mauris, ac blandit arcu. Suspendisse vitae magna ac enim commodo elementum. Donec
+        sollicitudin lectus ut tortor accumsan, non imperdiet nisi tristique. Etiam malesuada sapien ut augue bibendum
+        convallis. Proin ullamcorper ultrices erat, id cursus nisl fermentum a. Fusce suscipit vel sapien nec
+        malesuada.</p>
+    <p>Nullam congue ante id urna lacinia posuere. Vivamus nec blandit dolor. Fusce vitae est justo. Nulla facilisi. Sed
+        posuere lectus non mauris vehicula, vel consequat nisi efficitur. Duis laoreet ullamcorper dui at molestie.
+        Proin vestibulum mi vel lectus tristique, vitae posuere velit congue. Fusce mollis sapien sed eros lobortis,
+        quis rutrum eros facilisis. Donec gravida eleifend turpis, vel efficitur tortor aliquet a. Aenean volutpat lacus
+        quis ante facilisis maximus. Donec iaculis, mi et lacinia tincidunt, turpis nisi dictum magna, nec feugiat
+        lectus magna id metus.</p>
 </div>
 
 
