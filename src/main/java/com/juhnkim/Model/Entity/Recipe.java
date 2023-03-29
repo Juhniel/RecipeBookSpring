@@ -20,6 +20,9 @@ public class Recipe {
 
     private String recipeImage;
 
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Comment> comments;
+
 
     @ManyToMany(mappedBy = "favouriteRecipe")
     private List<User> user = new ArrayList<>();
@@ -81,6 +84,14 @@ public class Recipe {
 
     public void setUser(List<User> user) {
         this.user = user;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
 

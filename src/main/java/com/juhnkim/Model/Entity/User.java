@@ -24,6 +24,9 @@ public class User {
     @Lob
     private byte[] userProfileImg;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Comment> comments;
+
     @ManyToMany
     @JoinTable(
             name = "userfavouriterecipes",
@@ -44,15 +47,6 @@ public class User {
         this.userEmail = userEmail;
     }
 
-
-//    public String setHashedPassword(String password) {
-//        // Hash the password using BCrypt
-//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        String hashedPassword = passwordEncoder.encode(password);
-//
-//        // Set the hashed password as the new password
-//        return hashedPassword;
-//    }
     public void setUserId(Long userId) {
         this.userId = userId;
     }
@@ -116,5 +110,14 @@ public class User {
 
     public void setFavouriteRecipe(List<Recipe> favouriteRecipe) {
         this.favouriteRecipe = favouriteRecipe;
+    }
+
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

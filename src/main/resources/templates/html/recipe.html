@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/recipe.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
+    <script type="text/javascript" th:src="@{/js/recipeComments.js}" th:defer="defer"></script>
     <meta charset="UTF-8">
     <title>Test</title>
 </head>
@@ -86,6 +87,28 @@
       <li th:each="instruction : ${#strings.arraySplit(recipe.getRecipeInstructions().substring(0, recipe.getRecipeInstructions().length()-1), '\\.\\.')}"
           th:text="${#strings.substring(instruction, 1)}"></li>
     </ol>
+  </div>
+</div>
+
+<div class="comment-section">
+  <h2>Comments:</h2>
+  <div class="comment-list">
+    <ul>
+      <li th:each="comment : ${comments}">
+        <strong th:text="${comment.user.username}">Username</strong>
+        <p th:text="${comment.content}">Comment content</p>
+      </li>
+    </ul>
+  </div>
+  <div class="comment-form" th:if="${loggedInUser != null}">
+    <form action="/addComment" method="post">
+      <input type="hidden" name="recipeId" th:value="${recipe.getRecipeId()}">
+      <textarea name="comment" placeholder="Write your comment here..." onfocus="this.placeholder=''" onblur="this.placeholder='Write your comment here...'" required></textarea>
+      <button type="submit">Post Comment</button>
+    </form>
+  </div>
+  <div class="login-to-comment" th:if="${loggedInUser == null}">
+    <p>Please <a href="/login">log in</a> to post a comment.</p>
   </div>
 </div>
 
