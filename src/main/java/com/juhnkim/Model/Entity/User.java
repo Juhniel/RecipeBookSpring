@@ -14,11 +14,17 @@ public class User {
     private Long userId;
 
     private String username;
-
     private String userFirstName;
     private String userLastName;
     private String userPassword;
     private String userEmail;
+
+    @Column(name = "user_facebook")
+    private String userFacebook;
+    @Column(name = "user_instagram")
+    private String userInstagram;
+    @Column(name = "user_tiktok")
+    private String userTiktok;
 
     @Column(name = "user_profile_img")
     @Lob
@@ -119,5 +125,29 @@ public class User {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getUserFacebook() {
+        return userFacebook;
+    }
+
+    public void setUserFacebook(String userFacebook) {
+        this.userFacebook = userFacebook;
+    }
+
+    public String getUserInstagram() {
+        return userInstagram;
+    }
+
+    public void setUserInstagram(String userInstagram) {
+        this.userInstagram = userInstagram;
+    }
+
+    public String getUserTikTok() {
+        return userTiktok;
+    }
+
+    public void setUserTikTok(String userTiktok) {
+        this.userTiktok = userTiktok;
     }
 }
