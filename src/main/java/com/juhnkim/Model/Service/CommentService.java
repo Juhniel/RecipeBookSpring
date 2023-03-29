@@ -1,5 +1,6 @@
 package com.juhnkim.Model.Service;
 
+import com.juhnkim.Model.CommentResponseDTO;
 import com.juhnkim.Model.Entity.Comment;
 import com.juhnkim.Model.Entity.Recipe;
 import com.juhnkim.Model.Entity.User;
@@ -20,7 +21,7 @@ public class CommentService {
     @Autowired
     private RecipeRepository recipeRepository;
 
-    public void addComment(User user, Long recipeId, String content) {
+    public Comment addComment(User user, Long recipeId, String content) {
         Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(() -> new RuntimeException("Recipe not found"));
 
         // Create a new Comment object
@@ -31,10 +32,20 @@ public class CommentService {
         comment.setCreatedAt(LocalDateTime.now());
 
         // Save the comment
-        commentRepository.save(comment);
+        return  commentRepository.save(comment);
     }
 
     public List<Comment> getCommentsByRecipeId(Long recipeId) {
         return commentRepository.findByRecipeRecipeId(recipeId);
+    }
+
+    public CommentResponseDTO commentToDTO(Comment comment, String formattedDate, String formattedTime) {
+        CommentResponseDTO dto = new CommentResponseDTO();
+        dto.setCommentId(comment.getCommentId());
+        dto.setContent(comment.getContent());
+        dto.setUsername(comment.getUser().getUsername());
+        dto.setFormattedDate(formattedDate);
+        dto.setFormattedTime(formattedTime);
+        return dto;
     }
 }
