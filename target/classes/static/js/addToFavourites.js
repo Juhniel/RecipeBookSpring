@@ -28,7 +28,8 @@ function addToFavourites(event) {
                     heartIcon.classList.add("fa-heart-o");
                 }
             } else {
-                alert("Failed to add recipe to favorites.");
+                const loginPopup = document.querySelector("#overlay");
+                loginPopup.style.display = "block";
             }
         })
         .catch(error => console.error(error));

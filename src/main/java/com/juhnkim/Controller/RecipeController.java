@@ -35,7 +35,6 @@ public class RecipeController extends BaseController{
             model.addAttribute("recipe", recipe.get());
             addLoggedInUser(model,session);
             List<Comment> comments = commentService.getCommentsByRecipeId(id);
-            model.addAttribute("recipe", recipe);
             model.addAttribute("comments", comments);
 
             return "../templates/html/recipe";
