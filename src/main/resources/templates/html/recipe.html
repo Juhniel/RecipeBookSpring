@@ -92,17 +92,30 @@
 </div>
 
 <div class="comment-section">
-  <h2>Comments:</h2>
+  <h2>Comments</h2>
   <div class="comment-list">
     <ul>
       <li th:each="comment : ${comments}">
-        <strong th:text="${comment.user.username}">Username</strong>
-        <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-        <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-        <p th:text="${comment.content}">Comment content</p>
-        <span th:text="${#temporals.format(comment.createdAt, 'yyyy-MM-dd')}">Comment date</span><br>
-        <span th:text="${#temporals.format(comment.createdAt, 'HH:mm:ss')}">Comment time</span>
+        <div class="comment-header">
+          <div>
+            <strong class="username" th:text="${comment.user.username}">Username</strong>
+            <span class="social-icons">
+              <a th:if="${loggedInUser.getUserFacebook() != null}" th:href="${loggedInUser.getUserFacebook()}" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+              <a th:if="${loggedInUser.getUserFacebook() == null}" style="pointer-events:none;opacity:0.5"><i class="fab fa-facebook"></i></a>
+
+              <a th:if="${loggedInUser.getUserInstagram() != null}" th:href="${loggedInUser.getUserInstagram()}" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+              <a th:if="${loggedInUser.getUserInstagram() == null}" style="pointer-events:none;opacity:0.5"><i class="fab fa-instagram"></i></a>
+
+              <a th:if="${loggedInUser.getUserTikTok() != null}" th:href="${loggedInUser.getUserTikTok()}" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+              <a th:if="${loggedInUser.getUserTikTok() == null}" style="pointer-events:none;opacity:0.5"><i class="fab fa-tiktok"></i></a>
+            </span>
+          </div>
+          <div class="date-time">
+            <span th:text="${#temporals.format(comment.createdAt, 'yyyy-MM-dd')}">Comment date</span><br>
+            <span th:text="${#temporals.format(comment.createdAt, 'HH:mm:ss')}">Comment time</span>
+          </div>
+        </div>
+        <p class="comment-content" th:text="${comment.content}">Comment content</p>
       </li>
     </ul>
   </div>
