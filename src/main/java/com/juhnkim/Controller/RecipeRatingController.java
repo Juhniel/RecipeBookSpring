@@ -1,6 +1,9 @@
 package com.juhnkim.Controller;
 
 
+import com.juhnkim.Model.Entity.User;
+import com.juhnkim.Model.Service.RecipeRatingService;
+import com.juhnkim.Model.Service.RecipeService;
 import com.juhnkim.Model.*;
 import com.juhnkim.Model.Entity.User;
 import com.juhnkim.Model.Service.RecipeService;
@@ -36,10 +39,13 @@ public class RecipeRatingController {
         } else {
             Long userId = ((User) session.getAttribute("loggedInUser")).getUserId();
             recipeRatingService.addRating(userId, recipeId, rating);
+            double newAverageRating = recipeRatingService.getAverageRating(recipeId);
             response.put("success", true);
+            response.put("newAverageRating", newAverageRating);
         }
         return response;
     }
+
 
     @GetMapping("/rating/average")
     @ResponseBody

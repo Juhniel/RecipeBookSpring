@@ -2,7 +2,8 @@ package com.juhnkim.Controller;
 
 import com.juhnkim.Model.Entity.Recipe;
 import com.juhnkim.Model.Repository.RecipeRepository;
-import com.juhnkim.Model.RecipeRatingService;
+
+import com.juhnkim.Model.Service.RecipeRatingService;
 import com.juhnkim.Model.Entity.User;
 import com.juhnkim.Model.Service.UserFavouriteService;
 import jakarta.servlet.http.HttpSession;
@@ -46,6 +47,7 @@ public class RecipeSearchController extends BaseController{
             List<Long> favoriteRecipeIds = userFavouriteService.getFavouriteRecipeIds(loggedInUser.getUserId());
             model.addAttribute("favoriteRecipeIds", favoriteRecipeIds);
         }
+
         model.addAttribute("recipes", recipes);
         model.addAttribute("averageRatings", averageRatings);
 

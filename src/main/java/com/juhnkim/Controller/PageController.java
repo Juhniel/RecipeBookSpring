@@ -1,9 +1,9 @@
 package com.juhnkim.Controller;
 
 import com.juhnkim.Model.Entity.Recipe;
-import com.juhnkim.Model.*;
 import com.juhnkim.Model.Repository.RecipeRepository;
 import com.juhnkim.Model.Entity.User;
+import com.juhnkim.Model.Service.RecipeRatingService;
 import com.juhnkim.Model.Service.UserFavouriteService;
 import com.juhnkim.Model.Service.UserService;
 import com.juhnkim.Model.Utils.ThymeleafUtil;

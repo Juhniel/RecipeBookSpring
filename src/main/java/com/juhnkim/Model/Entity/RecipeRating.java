@@ -1,4 +1,4 @@
-package com.juhnkim.Model;
+package com.juhnkim.Model.Entity;
 
 import com.juhnkim.Model.Entity.Recipe;
 import com.juhnkim.Model.Entity.User;

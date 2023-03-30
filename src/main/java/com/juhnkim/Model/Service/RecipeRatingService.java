@@ -1,6 +1,7 @@
-package com.juhnkim.Model;
+package com.juhnkim.Model.Service;
 
 import com.juhnkim.Model.Entity.Recipe;
+import com.juhnkim.Model.Entity.RecipeRating;
 import com.juhnkim.Model.Entity.User;
 import com.juhnkim.Model.Repository.RecipeRatingRepository;
 import com.juhnkim.Model.Repository.RecipeRepository;
@@ -8,9 +9,7 @@ import com.juhnkim.Model.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class RecipeRatingService {
@@ -32,6 +31,7 @@ public class RecipeRatingService {
         RecipeRating existingRating = recipeRatingRepository.findByUserAndRecipe(user, recipe);
         if (existingRating != null) {
             existingRating.setRating(rating);
+            recipeRatingRepository.save(existingRating); // Save the updated rating to the database
         } else {
             RecipeRating newRating = new RecipeRating();
             newRating.setUser(user);
@@ -42,6 +42,7 @@ public class RecipeRatingService {
     }
 
 
+
     public double getAverageRating(Long recipeId) {
         List<RecipeRating> ratings = recipeRatingRepository.findByRecipeRecipeId(recipeId);
         if (ratings.isEmpty()) {
@@ -49,8 +50,10 @@ public class RecipeRatingService {
         }
         int totalRatings = ratings.stream().mapToInt(RecipeRating::getRating).sum();
         int numberOfRatings = ratings.size();
-        return (double) totalRatings / numberOfRatings;
+        double averageRating = (double) totalRatings / numberOfRatings;
+        return Math.round(averageRating * 10) / 10.0; // Round to one decimal place
     }
+
 
     public Double getAverageRatingByRecipeId(Long recipeId) {
         List<RecipeRating> ratings = recipeRatingRepository.findByRecipeRecipeId(recipeId);

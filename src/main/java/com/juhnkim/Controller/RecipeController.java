@@ -1,6 +1,9 @@
 package com.juhnkim.Controller;
 
-import com.juhnkim.Model.RecipeRatingService;
+
+import com.juhnkim.Model.Service.RecipeRatingService;
+
+
 import com.juhnkim.Model.Entity.Comment;
 import com.juhnkim.Model.Entity.Recipe;
 import com.juhnkim.Model.Repository.RecipeRepository;
@@ -16,7 +19,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 
@@ -44,8 +46,9 @@ public class RecipeController extends BaseController{
             List<Comment> comments = commentService.getCommentsByRecipeId(id);
             model.addAttribute("comments", comments);
 
-            Double averageRating = recipeRatingService.getAverageRatingByRecipeId(id);
-            model.addAttribute("averageRating", averageRating);
+
+            model.addAttribute("averageRating", recipeRatingService.getAverageRating(recipe.get().getRecipeId()));
+
 
             return "../templates/html/recipe";
         } else {
