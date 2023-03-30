@@ -8,12 +8,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <script type="text/javascript" th:src="@{/js/addToFavourites.js}" th:defer="defer"></script>
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
     <script type="text/javascript" th:src="@{/js/filterFavouriteSearch.js}" th:defer="defer"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
 </head>
 <body>
 
@@ -41,13 +38,17 @@
                 <div class="search-icon" onclick="toggleSearchField()">
                     <img src="https://recept.se/assets/images/menu/search.svg" alt="search icon">
                 </div>
-                <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..." style="display: none">
+                <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..."
+                       style="display: none">
             </form>
         </div>
         <div class="user">
             <div class="user-icon" id="user-icon">
-                <img th:if="${loggedInUser == null or loggedInUser.userProfileImg == null}" src="https://recept.se/assets/images/icons/user.svg" alt="user icon" id="user-icon-preview">
-                <img th:if="${loggedInUser != null and loggedInUser.userProfileImg != null}" th:src="'data:image/png;base64,' + ${thymeleafUtil.encodeToBase64(loggedInUser.userProfileImg)}" alt="user icon">
+                <img th:if="${loggedInUser == null or loggedInUser.userProfileImg == null}"
+                     src="https://recept.se/assets/images/icons/user.svg" alt="user icon" id="user-icon-preview">
+                <img th:if="${loggedInUser != null and loggedInUser.userProfileImg != null}"
+                     th:src="'data:image/png;base64,' + ${thymeleafUtil.encodeToBase64(loggedInUser.userProfileImg)}"
+                     alt="user icon">
             </div>
             <div class="profile-form" id="profileForm" style="display:none">
                 <form action="/logout" method="post" s:authentication="">
@@ -70,34 +71,39 @@
         </div>
     </div>
 </nav>
-    <div class="favouriteRecipesContainer">
-            <h1>Your Favourite Recipes</h1>
-        <input type="text" id="searchInput" placeholder="Search...">
-            <p th:if="${#lists.isEmpty(favouriteRecipes)}">No favorite recipes found.</p>
-        <div class="recipeGrid">
-            <div th:each="favRecipe : ${favouriteRecipes}" class="recipeCard">
-                <a th:href="@{/recipe/{id}(id=${favRecipe.getRecipe().getRecipeId()})}">
-                    <img th:src="${favRecipe.getRecipe().getRecipeImage()}" alt="Recipe image" style="width: 300px; height: 200px;">
-                    <h2 th:text="${favRecipe.getRecipe().getRecipeName()}" class="recipeTitle"></h2>
-                </a>
-                <button class="addToFavorites heart-red" name="addToFavourites" id="addToFavourites"
-                        th:attr="data-recipe-id=${favRecipe.getRecipe().getRecipeId()}" onclick="addToFavourites(event)">
-                    <i class="fa fa-heart"></i>
-                </button>
-            </div>
+<div class="favouriteRecipesContainer">
+    <h1>Your Favourite Recipes</h1>
+    <input type="text" id="searchInput" placeholder="Search...">
+    <p th:if="${#lists.isEmpty(favouriteRecipes)}">No favorite recipes found.</p>
+    <div class="recipeGrid">
+        <div th:each="favRecipe : ${favouriteRecipes}" class="recipeCard">
+            <a th:href="@{/recipe/{id}(id=${favRecipe.getRecipe().getRecipeId()})}">
+                <img th:src="${favRecipe.getRecipe().getRecipeImage()}" alt="Recipe image"
+                     style="width: 300px; height: 200px;">
+                <h2 th:text="${favRecipe.getRecipe().getRecipeName()}" class="recipeTitle"></h2>
+            </a>
+            <button class="addToFavorites heart-red" name="addToFavourites" id="addToFavourites"
+                    th:attr="data-recipe-id=${favRecipe.getRecipe().getRecipeId()}" onclick="addToFavourites(event)">
+                <i class="fa fa-heart"></i>
+            </button>
         </div>
     </div>
+</div>
 
-<div class="flex-it">
+<div class="flex-it"></div>
 
+<div th:if="${errorUserLogin}">
+    <script th:inline="javascript">
+        alert([[${errorUserLogin}]]);
+    </script>
 </div>
 
 <footer class="footerContainer">
-
     <div class="footer-content">
         <h3>JIKA</h3>
+        <!--        <p class="dev">DEV ¤ </p>-->
+        <!--        <img th:src="@{/images/jika-logo-kopia.png}" alt="Logo" > &lt;!&ndash;height="150px" width="150px"&ndash;&gt;-->
         <p>FOLLOW US!</p>
-
         <ul class="socials">
             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -108,7 +114,6 @@
     </div>
 
     <div class="footer-bottom">
-
         <div class="footer-menu">
             <ul class="f-menu">
                 <li><a href="http://localhost:8080/" target="_self">Home</a></li>
@@ -117,10 +122,8 @@
                 <li><a href="/contact">Contact</a></li>
             </ul>
         </div>
-
     </div>
-
-
 </footer>
+
 </body>
 </html> 

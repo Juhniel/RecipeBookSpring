@@ -22,6 +22,27 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+//    @PostMapping("/login")
+//    public String userLogin(@RequestParam("username") String username,
+//                            @RequestParam("password") String password,
+//                            RedirectAttributes redirectAttributes,
+//                            HttpSession session) {
+//        // call authenticateUser method of UserService
+//
+//        // check if authentication is successful
+//        if (userService.authenticateUser(username, password)) {
+//            // redirect to a certain page upon successful authentication
+//            User user = userRepository.findByUsername(username).get();
+//            // create a session for the logged-in user
+//            session.setAttribute("loggedInUser", user);
+//            return "redirect:/";
+//        } else {
+//            // redirect to the login page with an error message upon failed authentication
+//            redirectAttributes.addFlashAttribute("errorUserLogin", "Check your username and password"); //Returna till ett error meddelande med model attribute
+//            return "redirect:/";
+//        }
+//    }
+
     @PostMapping("/login")
     public String userLogin(@RequestParam("username") String username,
                             @RequestParam("password") String password,
