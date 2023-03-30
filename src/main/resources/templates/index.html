@@ -7,7 +7,6 @@
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
     <script type="text/javascript" th:src="@{/js/addToFavourites.js}" th:defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
@@ -117,7 +116,7 @@
 
 
     <div class="gallery-wrapper">
-        <h2 class="gallery-header">Most popular</h2>
+        <h2 class="gallery-header">Most viewed</h2>
         <div class="gallery-container gallery-container-2">
             <div th:each="recipe : ${popularRecipes}" class="gallery-item">
                 <div class="image-wrapper"> <!-- Add this div -->
@@ -133,6 +132,20 @@
                     </button>
                 </div>
                 <h5 th:text="${recipe.recipeName}"></h5>
+                <div class="ratingContainer" style="pointer-events: none;">
+                    <i class="fa fa-star" aria-hidden="true"
+                       th:style="'color: ' + (${averageRatings.get(recipe.recipeId)} >= 1 ? '#d87f7f' : '#ccc') + '; font-size: 0.75em;'"></i>
+                    <i class="fa fa-star" aria-hidden="true"
+                       th:style="'color: ' + (${averageRatings.get(recipe.recipeId)} >= 2 ? '#d87f7f' : '#ccc') + '; font-size: 0.75em;'"></i>
+                    <i class="fa fa-star" aria-hidden="true"
+                       th:style="'color: ' + (${averageRatings.get(recipe.recipeId)} >= 3 ? '#d87f7f' : '#ccc') + '; font-size: 0.75em;'"></i>
+                    <i class="fa fa-star" aria-hidden="true"
+                       th:style="'color: ' + (${averageRatings.get(recipe.recipeId)} >= 4 ? '#d87f7f' : '#ccc') + '; font-size: 0.75em;'"></i>
+                    <i class="fa fa-star" aria-hidden="true"
+                       th:style="'color: ' + (${averageRatings.get(recipe.recipeId)} >= 5 ? '#d87f7f' : '#ccc') + '; font-size: 0.75em;'"></i>
+                    <span class="ratingValue" th:text="${averageRatings.get(recipe.recipeId)}"></span>
+                </div>
+
             </div>
         </div>
     </div>
@@ -155,6 +168,20 @@
                     </button>
                 </div>
                 <h5 th:text="${recipe.recipeName}"></h5>
+                <div class="ratingContainer" style="pointer-events: none;">
+                    <i class="fa fa-star" aria-hidden="true"
+                       th:style="'color: ' + (${averageRatings.get(recipe.recipeId)} >= 1 ? '#d87f7f' : '#ccc') + '; font-size: 0.75em;'"></i>
+                    <i class="fa fa-star" aria-hidden="true"
+                       th:style="'color: ' + (${averageRatings.get(recipe.recipeId)} >= 2 ? '#d87f7f' : '#ccc') + '; font-size: 0.75em;'"></i>
+                    <i class="fa fa-star" aria-hidden="true"
+                       th:style="'color: ' + (${averageRatings.get(recipe.recipeId)} >= 3 ? '#d87f7f' : '#ccc') + '; font-size: 0.75em;'"></i>
+                    <i class="fa fa-star" aria-hidden="true"
+                       th:style="'color: ' + (${averageRatings.get(recipe.recipeId)} >= 4 ? '#d87f7f' : '#ccc') + '; font-size: 0.75em;'"></i>
+                    <i class="fa fa-star" aria-hidden="true"
+                       th:style="'color: ' + (${averageRatings.get(recipe.recipeId)} >= 5 ? '#d87f7f' : '#ccc') + '; font-size: 0.75em;'"></i>
+                    <span class="ratingValue" th:text="${averageRatings.get(recipe.recipeId)}"></span>
+                </div>
+
             </div>
         </div>
     </div>

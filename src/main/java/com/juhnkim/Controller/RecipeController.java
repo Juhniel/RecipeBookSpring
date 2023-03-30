@@ -1,6 +1,8 @@
 package com.juhnkim.Controller;
 
 import com.juhnkim.Model.Recipe;
+import com.juhnkim.Model.RecipeRatingService;
+import com.juhnkim.Model.RecipeService;
 import com.juhnkim.Model.Repository.RecipeRepository;
 import com.juhnkim.Model.TastyApi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -18,19 +21,31 @@ import java.util.Optional;
 public class RecipeController {
 
     @Autowired
+    private RecipeService recipeService;
+
+    @Autowired
+    private RecipeRatingService recipeRatingService;
+    @Autowired
     private RecipeRepository recipeRepository;
 
     @GetMapping("/recipe/{id}")
     public String getRecipe(@PathVariable Long id, Model model) {
-        Optional<Recipe> recipe = recipeRepository.findById(id);
-        if (recipe.isPresent()) {
-            model.addAttribute("recipe", recipe.get());
+        Recipe recipe = recipeService.getRecipeById(id);
+
+        if (recipe != null) {
+            model.addAttribute("recipe", recipe);
+
+            Double averageRating = recipeRatingService.getAverageRatingByRecipeId(id);
+            model.addAttribute("averageRating", averageRating);
+
             return "../templates/html/recipe";
         } else {
             model.addAttribute("errorMessage", "Recipe not found");
             return "../templates/html/error";
         }
     }
+
+
 
     @GetMapping("/createAccount")
     public String getCreateAccountPage() {

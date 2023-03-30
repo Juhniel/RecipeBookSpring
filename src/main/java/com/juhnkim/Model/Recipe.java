@@ -28,6 +28,11 @@ public class Recipe {
 
     }
 
+    public Recipe(Long recipeId) {
+        this.recipeId = recipeId;
+    }
+
+
     public Recipe(String recipeName, String recipeInstructions, String recipeIngredients, String recipeImage) {
         this.recipeName = recipeName;
         this.recipeInstructions = recipeInstructions;
@@ -82,5 +87,6 @@ public class Recipe {
     public void setUser(List<User> user) {
         this.user = user;
     }
+
 }
 

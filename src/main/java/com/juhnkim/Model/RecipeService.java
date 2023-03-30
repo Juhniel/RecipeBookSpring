@@ -9,11 +9,21 @@ public class RecipeService {
 
     @Autowired RecipeRepository recipeRepository;
 
+//    public Recipe getRecipeById(Long recipeId) {
+//        return recipeRepository.findById(recipeId).orElseThrow(() -> new IllegalArgumentException("Recipe not found"));
+//    }
+
+    public Recipe getRecipeById(Long recipeId) {
+        return recipeRepository.findById(recipeId).orElse(null);
+    }
+
+
     public void saveRecipe(Recipe recipe) {
         if (recipeRepository.findByRecipeName(recipe.getRecipeName()).isEmpty()) {
             recipeRepository.save(recipe);
         }
     }
+
 
 
 }

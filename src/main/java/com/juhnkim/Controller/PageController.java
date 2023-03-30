@@ -1,10 +1,7 @@
 package com.juhnkim.Controller;
 
-import com.juhnkim.Model.Recipe;
+import com.juhnkim.Model.*;
 import com.juhnkim.Model.Repository.RecipeRepository;
-import com.juhnkim.Model.User;
-import com.juhnkim.Model.UserFavouriteService;
-import com.juhnkim.Model.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 public class PageController {
@@ -29,6 +26,9 @@ public class PageController {
 
     @Autowired
     private UserFavouriteService userFavouriteService;
+
+    @Autowired
+    private RecipeRatingService recipeRatingService;
 
     @Autowired
     private UserService userService;
@@ -44,6 +44,12 @@ public class PageController {
         List<Long> latestRecipeIds = Arrays.asList(6977L, 6978L, 6979L, 6980L);
         List<Recipe> latestRecipes = (List<Recipe>) recipeRepository.findAllById(latestRecipeIds);
         model.addAttribute("latestRecipes", latestRecipes);
+
+        Map<Long, Double> averageRatings = new HashMap<>();
+        for (Recipe recipe : Stream.concat(popularRecipes.stream(), latestRecipes.stream()).distinct().collect(Collectors.toList())) {
+            averageRatings.put(recipe.getRecipeId(), recipeRatingService.getAverageRatingByRecipeId(recipe.getRecipeId()));
+        }
+        model.addAttribute("averageRatings", averageRatings);
 
         // Initialize an empty list of favoriteRecipeIds
         List<Long> favoriteRecipeIds = new ArrayList<>();
