@@ -2,7 +2,7 @@ package com.juhnkim.Controller;
 
 import com.juhnkim.Model.Repository.UserRepository;
 import com.juhnkim.Model.Entity.User;
-import com.juhnkim.Model.Entity.UserService;
+import com.juhnkim.Model.Service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
