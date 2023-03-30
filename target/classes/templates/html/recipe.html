@@ -135,7 +135,7 @@
         </div>
     </div>
     <div class="comment-form" th:if="${loggedInUser != null}">
-        <form id="commentForm" action="/addComment" method="post">
+        <form action="/addComment" method="post">
             <input type="hidden" name="recipeId" th:value="${recipe.getRecipeId()}">
             <textarea name="comment" placeholder="Write your comment here..." onfocus="this.placeholder=''"
                       onblur="this.placeholder='Write your comment here...'" required></textarea>
