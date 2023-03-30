@@ -102,7 +102,7 @@
                        th:style="'color: ' + (${averageRatings.get(recipe.recipeId)} >= 4 ? '#d87f7f' : '#ccc') + '; font-size: 0.75em;'"></i>
                     <i class="fa fa-star" aria-hidden="true"
                        th:style="'color: ' + (${averageRatings.get(recipe.recipeId)} >= 5 ? '#d87f7f' : '#ccc') + '; font-size: 0.75em;'"></i>
-                    <span class="ratingValue" th:text="${averageRatings.get(recipe.recipeId)}"></span>
+                    <span id="ratingValue" style="font-size: 3em" class="ratingValue" th:text="${averageRating}" th:attr="data-average-rating=${averageRating}"></span>
                 </div>
             </div>
         </div>
