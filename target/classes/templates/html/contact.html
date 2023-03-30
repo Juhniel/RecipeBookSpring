@@ -3,10 +3,6 @@
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/contact.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -70,6 +66,30 @@
     </div>
 </nav>
 
+<!--<div class="container">-->
+<!--    <form action="https://formsubmit.co/695d60ede3158f1f66839ebd6514423d" method="POST"> &lt;!&ndash; länk till våra mejl &ndash;&gt;-->
+<!--        <div class="form-group">-->
+<!--            <input type="text" name="name" id="name" required>-->
+<!--            <label for="name">-->
+<!--                <p>Name</p>-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <input type="email" name="email" id="email" required>-->
+<!--            <label for="email">-->
+<!--                <p>Email</p>-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <textarea id="message" type="text" name="message" cols="30" rows="10" required></textarea>-->
+<!--            <label for="message">-->
+<!--                <p>Message</p>-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <button type="submit" class="button-form">SUBMIT</button>-->
+<!--    </form>-->
+<!--</div>-->
+
 <div class="container">
     <form action="https://formsubmit.co/695d60ede3158f1f66839ebd6514423d" method="POST" onsubmit="showSuccessMessage()">
         <div class="form-group">
@@ -92,47 +112,8 @@
     </form>
     <p id="success-message" style="display:none;">Thank you for your message!</p>
 </div>
-
-<div class="flex-it">
-
-</div>
-
-<div th:if="${errorUserLogin}">
-    <script th:inline="javascript">
-        alert([[${errorUserLogin}]]);
-    </script>
-</div>
-
-<footer class="footerContainer">
-
-    <div class="footer-content">
-        <h3>JIKA</h3>
-        <p>FOLLOW US!</p>
-
-        <ul class="socials">
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-        </ul>
-    </div>
-
-    <div class="footer-bottom">
-
-        <div class="footer-menu">
-            <ul class="f-menu">
-                <li><a href="http://localhost:8080/" target="_self">Home</a></li>
-                <li><a href="/articles">Articles</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-        </div>
-
-    </div>
-
-
-</footer>
 </body>
+</html>
 
+</body>
 </html>
