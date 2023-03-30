@@ -80,7 +80,6 @@
 
 <div class="header">
   <img th:src="${recipe.getRecipeImage()}" alt="Recipe image" style="width: 800px; height: 500px;">
-  <h1 th:text="${recipe.getRecipeName()}"></h1>
   <div class="recipeTitle">
         <h1 th:text="${recipe.getRecipeName()}"></h1>
         <div class="ratingContainer" th:attr="data-recipe-id=${recipe.recipeId}">
