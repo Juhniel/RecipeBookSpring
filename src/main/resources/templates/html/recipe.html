@@ -9,6 +9,8 @@
 <!--    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
+    <script type="text/javascript" th:src="@{/js/recipeRating.js}" th:defer="defer"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
     <script type="text/javascript" th:src="@{/js/recipeComments.js}" th:defer="defer"></script>
     <script type="text/javascript" th:src="@{/js/loginPopup.js}" th:defer="defer"></script>
     <meta charset="UTF-8">
@@ -75,9 +77,23 @@
 </nav>
 
 
+
 <div class="header">
-    <img th:src="${recipe.getRecipeImage()}" alt="Recipe image" style="width: 800px; height: 500px;">
-    <h1 th:text="${recipe.getRecipeName()}"></h1>
+  <img th:src="${recipe.getRecipeImage()}" alt="Recipe image" style="width: 800px; height: 500px;">
+  <h1 th:text="${recipe.getRecipeName()}"></h1>
+  <div class="recipeTitle">
+        <h1 th:text="${recipe.getRecipeName()}"></h1>
+        <div class="ratingContainer" th:attr="data-recipe-id=${recipe.recipeId}">
+            <i class="fa fa-star-o star-icon" style="color: #d87f7f; font-size: 3em; cursor: pointer" th:data-rating="1" th:data-recipe-id="${recipe.recipeId}"></i>
+            <i class="fa fa-star-o star-icon" style="color: #d87f7f; font-size: 3em; cursor: pointer" th:data-rating="2" th:data-recipe-id="${recipe.recipeId}"></i>
+            <i class="fa fa-star-o star-icon" style="color: #d87f7f; font-size: 3em; cursor: pointer" th:data-rating="3" th:data-recipe-id="${recipe.recipeId}"></i>
+            <i class="fa fa-star-o star-icon" style="color: #d87f7f; font-size: 3em; cursor: pointer" th:data-rating="4" th:data-recipe-id="${recipe.recipeId}"></i>
+            <i class="fa fa-star-o star-icon" style="color: #d87f7f; font-size: 3em; cursor: pointer" th:data-rating="5" th:data-recipe-id="${recipe.recipeId}"></i>
+            <span style="font-size: 3em" class="ratingValue" th:text="${averageRating}"></span>
+        </div>
+        <div th:attrappend="data-average-rating=${averageRating},data-recipe-id=${recipe.recipeId}" style="display: none;"></div>
+    </div>
+
 </div>
 
 <div class="recipeInfoContainer">

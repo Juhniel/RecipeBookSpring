@@ -1,5 +1,8 @@
 package com.juhnkim.Controller;
 
+import com.juhnkim.Model.Recipe;
+import com.juhnkim.Model.RecipeRatingService;
+import com.juhnkim.Model.RecipeService;
 import com.juhnkim.Model.Entity.Comment;
 import com.juhnkim.Model.Entity.Recipe;
 import com.juhnkim.Model.Repository.RecipeRepository;
@@ -15,12 +18,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
 @Controller
 public class RecipeController extends BaseController{
 
+    @Autowired
+    private RecipeService recipeService;
+
+    @Autowired
+    private RecipeRatingService recipeRatingService;
     @Autowired
     private RecipeRepository recipeRepository;
 
@@ -37,12 +46,17 @@ public class RecipeController extends BaseController{
             List<Comment> comments = commentService.getCommentsByRecipeId(id);
             model.addAttribute("comments", comments);
 
+            Double averageRating = recipeRatingService.getAverageRatingByRecipeId(id);
+            model.addAttribute("averageRating", averageRating);
+
             return "../templates/html/recipe";
         } else {
             model.addAttribute("errorMessage", "Recipe not found");
             return "../templates/html/error";
         }
     }
+
+
 
     @GetMapping("/createAccount")
     public String getCreateAccountPage() {
