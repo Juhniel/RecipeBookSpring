@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Recipes</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/loginPopup.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/result-recipe.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <script type="text/javascript" th:src="@{/js/addToFavourites.js}" th:defer></script>
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
+    <script type="text/javascript" th:src="@{/js/addToFavourites.js}" th:defer></script>
     <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
 </head>
 <body>
@@ -39,13 +36,17 @@
                 <div class="search-icon" onclick="toggleSearchField()">
                     <img src="https://recept.se/assets/images/menu/search.svg" alt="search icon">
                 </div>
-                <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..." style="display: none">
+                <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..."
+                       style="display: none">
             </form>
         </div>
         <div class="user">
             <div class="user-icon" id="user-icon">
-                <img th:if="${loggedInUser == null or loggedInUser.userProfileImg == null}" src="https://recept.se/assets/images/icons/user.svg" alt="user icon" id="user-icon-preview">
-                <img th:if="${loggedInUser != null and loggedInUser.userProfileImg != null}" th:src="'data:image/png;base64,' + ${thymeleafUtil.encodeToBase64(loggedInUser.userProfileImg)}" alt="user icon">
+                <img th:if="${loggedInUser == null or loggedInUser.userProfileImg == null}"
+                     src="https://recept.se/assets/images/icons/user.svg" alt="user icon" id="user-icon-preview">
+                <img th:if="${loggedInUser != null and loggedInUser.userProfileImg != null}"
+                     th:src="'data:image/png;base64,' + ${thymeleafUtil.encodeToBase64(loggedInUser.userProfileImg)}"
+                     alt="user icon">
             </div>
             <div class="profile-form" id="profileForm" style="display:none">
                 <form action="/logout" method="post" s:authentication="">
@@ -70,66 +71,42 @@
 </nav>
 
 <div class="searchResultContainer">
-<h1>Search Results</h1>
+    <h1>Search Results</h1>
 
-<p th:if="${#lists.isEmpty(recipes)}">No results found for "${param.searchTerm}"</p>
+    <p th:if="${#lists.isEmpty(recipes)}">No results found for "${param.searchTerm}"</p>
 
-<div th:if="${recipes != null}">
-    <div class="recipeGrid">
-        <div th:each="recipe : ${recipes}" class="recipeCard">
-            <a th:href="@{/recipe/{id}(id=${recipe.getRecipeId()})}">
-                <img th:src="${recipe.getRecipeImage()}" alt="Recipe image" style="width: 300px; height: 200px;">
-                <h2 class="recipeTitle" th:text="${recipe.getRecipeName()}"></h2>
-            </a>
-            <button class="addToFavorites" name="addToFavourites" id="addToFavourites"
-                    th:attr="data-recipe-id=${recipe.getRecipeId()}" onclick="addToFavourites(event)"
-                    th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'heart-red' : ''">
-                <i class="fa" th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'fa-heart' : 'fa-heart-o'" aria-hidden="true"></i>
-            </button>
+    <div th:if="${recipes != null}">
+        <div class="recipeGrid">
+            <div th:each="recipe : ${recipes}" class="recipeCard">
+                <a th:href="@{/recipe/{id}(id=${recipe.getRecipeId()})}">
+                    <img th:src="${recipe.getRecipeImage()}" alt="Recipe image" style="width: 300px; height: 200px;">
+                    <h2 class="recipeTitle" th:text="${recipe.getRecipeName()}"></h2>
+                </a>
+                <button class="addToFavorites" name="addToFavourites" id="addToFavourites"
+                        th:attr="data-recipe-id=${recipe.getRecipeId()}"
+                        th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'heart-red' : ''">
+                    <i class="fa"
+                       th:classappend="${favoriteRecipeIds != null and #lists.contains(favoriteRecipeIds, recipe.recipeId)} ? 'fa-heart' : 'fa-heart-o'"
+                       aria-hidden="true"></i>
+                </button>
+            </div>
         </div>
     </div>
 </div>
-</div>
 
-<div class="flex-it">
 
-</div>
-
-<div th:if="${errorUserLogin}">
-    <script th:inline="javascript">
-        alert([[${errorUserLogin}]]);
-    </script>
-</div>
-
-<footer class="footerContainer">
-
-    <div class="footer-content">
-        <h3>JIKA</h3>
-        <p>FOLLOW US!</p>
-
-        <ul class="socials">
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-        </ul>
+<div id="overlay">
+    <div id="loginPopup">
+        <h2>Login</h2>
+        <form action="/login" method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Log in</button>
+        </form>
+        <a href="/createAccount">Create Account</a>
+        <button id="close-btn">Close</button>
     </div>
+</div>
 
-    <div class="footer-bottom">
-
-        <div class="footer-menu">
-            <ul class="f-menu">
-                <li><a href="http://localhost:8080/" target="_self">Home</a></li>
-                <li><a href="/articles">Articles</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-        </div>
-
-    </div>
-
-
-</footer>
 </body>
 </html>

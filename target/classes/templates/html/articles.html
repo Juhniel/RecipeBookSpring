@@ -2,11 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:s="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/articles.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -70,57 +65,6 @@
         </div>
     </div>
 </nav>
-
-<section>
-
-    <div class="container">
-        <h1>Articles</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lobortis, lorem sit amet interdum tristique, dui urna convallis turpis, et aliquet sapien elit eget eros. Sed pellentesque gravida urna, vel fringilla eros ultricies id. Aliquam quis tellus sem. Integer imperdiet orci nec augue hendrerit, non pulvinar enim lacinia. Suspendisse vel finibus mauris, ac blandit arcu. Suspendisse vitae magna ac enim commodo elementum. Donec sollicitudin lectus ut tortor accumsan, non imperdiet nisi tristique. Etiam malesuada sapien ut augue bibendum convallis. Proin ullamcorper ultrices erat, id cursus nisl fermentum a. Fusce suscipit vel sapien nec malesuada.</p>
-        <p>Nullam congue ante id urna lacinia posuere. Vivamus nec blandit dolor. Fusce vitae est justo. Nulla facilisi. Sed posuere lectus non mauris vehicula, vel consequat nisi efficitur. Duis laoreet ullamcorper dui at molestie. Proin vestibulum mi vel lectus tristique, vitae posuere velit congue. Fusce mollis sapien sed eros lobortis, quis rutrum eros facilisis. Donec gravida eleifend turpis, vel efficitur tortor aliquet a. Aenean volutpat lacus quis ante facilisis maximus. Donec iaculis, mi et lacinia tincidunt, turpis nisi dictum magna, nec feugiat lectus magna id metus.</p>
-    </div>
-
-</section>
-
-<div class="flex-it">
-
-</div>
-
-<div th:if="${errorUserLogin}">
-    <script th:inline="javascript">
-        alert([[${errorUserLogin}]]);
-    </script>
-</div>
-
-<footer class="footerContainer">
-
-    <div class="footer-content">
-        <h3>JIKA</h3>
-        <p>FOLLOW US!</p>
-
-        <ul class="socials">
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-        </ul>
-    </div>
-
-    <div class="footer-bottom">
-
-        <div class="footer-menu">
-            <ul class="f-menu">
-                <li><a href="http://localhost:8080/" target="_self">Home</a></li>
-                <li><a href="/articles">Articles</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-        </div>
-
-    </div>
-
-
-</footer>
 
 </body>
 </html>
