@@ -1,7 +1,7 @@
 package com.juhnkim.Controller;
 
-import com.juhnkim.Model.User;
-import com.juhnkim.Model.UserService;
+import com.juhnkim.Model.Entity.User;
+import com.juhnkim.Model.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

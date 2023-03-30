@@ -3,8 +3,13 @@ package com.juhnkim.Controller;
 import com.juhnkim.Model.Recipe;
 import com.juhnkim.Model.RecipeRatingService;
 import com.juhnkim.Model.RecipeService;
+import com.juhnkim.Model.Entity.Comment;
+import com.juhnkim.Model.Entity.Recipe;
 import com.juhnkim.Model.Repository.RecipeRepository;
+import com.juhnkim.Model.Repository.UserRepository;
+import com.juhnkim.Model.Service.CommentService;
 import com.juhnkim.Model.TastyApi;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +23,7 @@ import java.util.Optional;
 
 
 @Controller
-public class RecipeController {
+public class RecipeController extends BaseController{
 
     @Autowired
     private RecipeService recipeService;
@@ -28,12 +33,18 @@ public class RecipeController {
     @Autowired
     private RecipeRepository recipeRepository;
 
-    @GetMapping("/recipe/{id}")
-    public String getRecipe(@PathVariable Long id, Model model) {
-        Recipe recipe = recipeService.getRecipeById(id);
+    @Autowired
+    private CommentService commentService;
 
-        if (recipe != null) {
-            model.addAttribute("recipe", recipe);
+
+    @GetMapping("/recipe/{id}")
+    public String getRecipe(@PathVariable Long id, Model model, HttpSession session) {
+        Optional<Recipe> recipe = recipeRepository.findById(id);
+        if (recipe.isPresent()) {
+            model.addAttribute("recipe", recipe.get());
+            addLoggedInUser(model,session);
+            List<Comment> comments = commentService.getCommentsByRecipeId(id);
+            model.addAttribute("comments", comments);
 
             Double averageRating = recipeRatingService.getAverageRatingByRecipeId(id);
             model.addAttribute("averageRating", averageRating);

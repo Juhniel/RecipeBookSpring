@@ -1,8 +1,8 @@
 package com.juhnkim.Controller;
 
-import com.juhnkim.Model.Recipe;
-import com.juhnkim.Model.User;
-import com.juhnkim.Model.UserService;
+import com.juhnkim.Model.Entity.Recipe;
+import com.juhnkim.Model.Entity.User;
+import com.juhnkim.Model.Service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @Controller
-public class UserController {
+public class UserController extends BaseController{
     @Autowired
     private UserService userService;
 
@@ -26,6 +26,7 @@ public class UserController {
     public String myProfile(Model model, HttpSession session) {
         // retrieve the logged-in user's information from the session
         User loggedInUser = (User) session.getAttribute("loggedInUser");
+        addLoggedInUser(model, session);
         List<Recipe> favouriteRecipes = loggedInUser.getFavouriteRecipe();
 
         // convert the userProfileImg bytes to a base64 encoded string
@@ -42,6 +43,9 @@ public class UserController {
 
     @PostMapping("/myProfile/update")
     public String updateMyProfile(@RequestParam("profile-pic") MultipartFile profilePic,
+                                  @RequestParam("facebook") String facebook,
+                                  @RequestParam("instagram") String instagram,
+                                  @RequestParam("tikTok") String tikTok,
                                   HttpSession session) throws IOException {
         User loggedInUser = (User) session.getAttribute("loggedInUser");
 
@@ -51,6 +55,18 @@ public class UserController {
 
         if (!profilePic.isEmpty()) {
             loggedInUser.setUserProfileImg(profilePic.getBytes());
+        }
+
+        if (!facebook.isEmpty()) {
+            loggedInUser.setUserFacebook(facebook);
+        }
+
+        if (!instagram.isEmpty()) {
+            loggedInUser.setUserInstagram(instagram);
+        }
+
+        if (!tikTok.isEmpty()) {
+            loggedInUser.setUserTikTok(tikTok);
         }
 
         userService.saveUser(loggedInUser);

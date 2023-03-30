@@ -1,11 +1,13 @@
 package com.juhnkim.Controller;
 
-import com.juhnkim.Model.Recipe;
+import com.juhnkim.Model.Entity.Recipe;
 import com.juhnkim.Model.Repository.RecipeRepository;
 import com.juhnkim.Model.User;
 import com.juhnkim.Model.UserFavouriteRecipes;
 import com.juhnkim.Model.UserFavouriteService;
 import com.juhnkim.Model.RecipeRatingService;
+import com.juhnkim.Model.Entity.User;
+import com.juhnkim.Model.Service.UserFavouriteService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class RecipeSearchController {
+public class RecipeSearchController extends BaseController{
 
     @Autowired
     private RecipeRepository recipeRepository;
@@ -33,6 +35,7 @@ public class RecipeSearchController {
     public String searchRecipes(@RequestParam("searchTerm") String searchTerm, Model model, HttpSession session) {
 
         User loggedInUser = (User) session.getAttribute("loggedInUser");
+        addLoggedInUser(model, session);
         List<Recipe> recipes = recipeRepository.findByRecipeNameContainingIgnoreCase(searchTerm);
 
         // Fetch the average ratings for all the recipes
@@ -46,7 +49,7 @@ public class RecipeSearchController {
             List<Long> favoriteRecipeIds = userFavouriteService.getFavouriteRecipeIds(loggedInUser.getUserId());
             model.addAttribute("favoriteRecipeIds", favoriteRecipeIds);
         }
-
+        List<Recipe> recipes = recipeRepository.findByRecipeNameContainingIgnoreCase(searchTerm);
         model.addAttribute("recipes", recipes);
         model.addAttribute("averageRatings", averageRatings);
 

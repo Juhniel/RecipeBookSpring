@@ -1,4 +1,4 @@
-package com.juhnkim.Model;
+package com.juhnkim.Model.Entity;
 
 import jakarta.persistence.*;
 
@@ -19,6 +19,9 @@ public class Recipe {
     private String recipeIngredients;
 
     private String recipeImage;
+
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Comment> comments;
 
 
     @ManyToMany(mappedBy = "favouriteRecipe")
@@ -88,5 +91,12 @@ public class Recipe {
         this.user = user;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }
 
