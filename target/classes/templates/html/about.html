@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:s="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -84,6 +86,41 @@
         lectus magna id metus.</p>
 </div>
 
+
+<div class="flex-it"></div>
+
+<div th:if="${errorUserLogin}">
+    <script th:inline="javascript">
+        alert([[${errorUserLogin}]]);
+    </script>
+</div>
+
+<footer class="footerContainer">
+    <div class="footer-content">
+        <h3>JIKA</h3>
+        <!--        <p class="dev">DEV ¤ </p>-->
+        <!--        <img th:src="@{/images/jika-logo-kopia.png}" alt="Logo" > &lt;!&ndash;height="150px" width="150px"&ndash;&gt;-->
+        <p>FOLLOW US!</p>
+        <ul class="socials">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+        </ul>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-menu">
+            <ul class="f-menu">
+                <li><a href="http://localhost:8080/" target="_self">Home</a></li>
+                <li><a href="/articles">Articles</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>
