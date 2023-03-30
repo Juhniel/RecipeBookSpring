@@ -19,7 +19,7 @@ import java.util.Set;
 @Component
 public class TastyApi {
     private static final String API_URL = "https://tasty.p.rapidapi.com";
-    private static final String API_KEY = "44dfda61dfmsh97a0065bd84d37dp119920jsnb157a8a9906b";
+    private static final String API_KEY = "4ffadcac92msh7ec8ded0a27768bp1e6430jsn6ad083d3242a";
     @Autowired
     private RecipeRepository recipeRepository;
 
@@ -30,12 +30,11 @@ public class TastyApi {
     public void fetchRecipes() throws Exception {
         int batchSize = 40;
 
-
         for (int i = 0; i < 241; i++) {
             HttpClient client = HttpClient.newHttpClient();
 
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(API_URL + "/recipes/list?from=" + (i*batchSize) + "&size=" + batchSize))
+                    .uri(URI.create(API_URL + "/recipes/list?from=" + (i * batchSize) + "&size=" + batchSize))
                     .header("X-RapidAPI-Key", API_KEY)
                     .header("X-RapidAPI-Host", "tasty.p.rapidapi.com")
                     .build();
@@ -46,52 +45,46 @@ public class TastyApi {
                 ObjectMapper mapper = new ObjectMapper();
                 JsonNode rootNode = mapper.readTree(responseBody);
                 JsonNode resultsNode = rootNode.path("results");
-
-                List<Recipe> recipes = new ArrayList<>();
-                Set<String> existingNames = new HashSet<>();
-
-                for (JsonNode recipeNode : resultsNode) {
-                    String name = recipeNode.path("name").asText();
+                for (JsonNode resultNode : resultsNode) {
+                    String name = resultNode.path("name").asText();
                     List<Recipe> existingRecipes = recipeRepository.findByRecipeName(name);
 
-                    if(existingNames.contains(name)) {
-                        continue;
-                    }
-
                     if (!existingRecipes.isEmpty()) {
-                        existingNames.add(name);
-                        continue; // skip this recipe if it already exists
-                    }
+                        String image = resultNode.path("thumbnail_url").asText();
+                        JsonNode recipeNode = resultNode.path("recipes").get(0);
 
-                    String image = recipeNode.path("thumbnail_url").asText();
-                    List<String> instructionsList = new ArrayList<>();
-                    List<String> ingredients = new ArrayList<>();
-                    if (recipeNode.has("recipes")) {
-                        continue;
-                    } else {
-                        // Retrieve instructions and ingredients from top-level recipe node
-                        JsonNode instructionsNode = recipeNode.path("instructions");
-                        for (JsonNode instructionNode : instructionsNode) {
-                            String instructions = instructionNode.path("display_text").asText();
-                            instructionsList.add(instructions);
+                        String videoUrl;
+                        int numServings;
+
+                        if (recipeNode != null) {
+                            videoUrl = recipeNode.path("original_video_url").asText(null);
+                            numServings = recipeNode.path("num_servings").asInt(-1);
+                        } else {
+                            videoUrl = resultNode.path("original_video_url").asText(null);
+                            numServings = resultNode.path("num_servings").asInt(-1);
                         }
-                        JsonNode sectionsNode = recipeNode.path("sections");
-                        for (JsonNode sectionNode : sectionsNode) {
-                            JsonNode componentsNode = sectionNode.path("components");
-                            for (JsonNode componentNode : componentsNode) {
-                                String ingredient = componentNode.path("raw_text").asText();
-                                ingredients.add(ingredient);
+
+                        // Update the existing recipe with new numServings and videoUrl
+                        for (Recipe existingRecipe : existingRecipes) {
+                            if (numServings != -1) {
+                                existingRecipe.setRecipeServings(numServings);
+                            } else {
+                                System.out.println("num_servings is missing for recipe: " + name);
                             }
+
+                            if (videoUrl != null) {
+                                existingRecipe.setRecipeVideo(videoUrl);
+                            } else {
+                                System.out.println("original_video_url is missing for recipe: " + name);
+                            }
+
+                            recipeRepository.save(existingRecipe);
                         }
                     }
-                    recipes.add(new Recipe(name, instructionsList.toString(), ingredients.toString(), image));
                 }
 
-                for (Recipe recipe : recipes) {
-                    recipeRepository.save(recipe);
-                }
+                Thread.sleep(200);
             }
-            Thread.sleep(200);
         }
     }
 }
