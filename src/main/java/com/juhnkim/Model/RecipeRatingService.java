@@ -1,5 +1,7 @@
 package com.juhnkim.Model;
 
+import com.juhnkim.Model.Entity.Recipe;
+import com.juhnkim.Model.Entity.User;
 import com.juhnkim.Model.Repository.RecipeRatingRepository;
 import com.juhnkim.Model.Repository.RecipeRepository;
 import com.juhnkim.Model.Repository.UserRepository;

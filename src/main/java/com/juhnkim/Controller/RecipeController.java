@@ -1,13 +1,11 @@
 package com.juhnkim.Controller;
 
-import com.juhnkim.Model.Recipe;
 import com.juhnkim.Model.RecipeRatingService;
-import com.juhnkim.Model.RecipeService;
 import com.juhnkim.Model.Entity.Comment;
 import com.juhnkim.Model.Entity.Recipe;
 import com.juhnkim.Model.Repository.RecipeRepository;
-import com.juhnkim.Model.Repository.UserRepository;
 import com.juhnkim.Model.Service.CommentService;
+import com.juhnkim.Model.Service.RecipeService;
 import com.juhnkim.Model.TastyApi;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;

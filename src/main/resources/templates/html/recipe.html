@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/recipe.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
     <script type="text/javascript" th:src="@{/js/recipeRating.js}" th:defer="defer"></script>
@@ -80,7 +80,6 @@
 
 <div class="header">
   <img th:src="${recipe.getRecipeImage()}" alt="Recipe image" style="width: 800px; height: 500px;">
-  <h1 th:text="${recipe.getRecipeName()}"></h1>
   <div class="recipeTitle">
         <h1 th:text="${recipe.getRecipeName()}"></h1>
         <div class="ratingContainer" th:attr="data-recipe-id=${recipe.recipeId}">

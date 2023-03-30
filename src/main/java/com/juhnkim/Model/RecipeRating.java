@@ -1,5 +1,7 @@
 package com.juhnkim.Model;
 
+import com.juhnkim.Model.Entity.Recipe;
+import com.juhnkim.Model.Entity.User;
 import jakarta.persistence.*;
 
 @Entity
