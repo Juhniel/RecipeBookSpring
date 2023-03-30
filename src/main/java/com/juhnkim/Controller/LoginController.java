@@ -3,7 +3,6 @@ package com.juhnkim.Controller;
 import com.juhnkim.Model.Repository.UserRepository;
 import com.juhnkim.Model.Entity.User;
 import com.juhnkim.Model.Service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,31 +25,20 @@ public class LoginController {
     public String userLogin(@RequestParam("username") String username,
                             @RequestParam("password") String password,
                             RedirectAttributes redirectAttributes,
-                            HttpSession session,
-                            HttpServletRequest request) {
+                            HttpSession session) {
+        // call authenticateUser method of UserService
 
-        int loginAttempts = (session.getAttribute("loginAttempts") != null) ? (int) session.getAttribute("loginAttempts") : 0;
-        // Get the current page URL
-        String referer = request.getHeader("referer");
-        int maxAttempts = 3;
-        long timeout = 60000;
-
-        if (loginAttempts >= maxAttempts) {
-            session.setMaxInactiveInterval((int) (timeout / 1000));
-            redirectAttributes.addFlashAttribute("errorUserLogin", "You have exceeded the maximum login attempts. Please try again in 1 minute.");
-            return "redirect:" + referer;
+        // check if authentication is successful
+        if (userService.authenticateUser(username, password)) {
+            // redirect to a certain page upon successful authentication
+            User user = userRepository.findByUsername(username).get();
+            // create a session for the logged-in user
+            session.setAttribute("loggedInUser", user);
+            return "redirect:/";
         } else {
-            if (userService.authenticateUser(username, password)) {
-                session.removeAttribute("loginAttempts");
-                User user = userRepository.findByUsername(username).get();
-                session.setAttribute("loggedInUser", user);
-                return "redirect:" + referer;
-            } else {
-                loginAttempts++;
-                session.setAttribute("loginAttempts", loginAttempts);
-                redirectAttributes.addFlashAttribute("errorUserLogin", "Check your username and password. You have " + (3 - loginAttempts) + " attempts remaining before a 1 minute timeout.");
-                return "redirect:" + referer;
-            }
+            // redirect to the login page with an error message upon failed authentication
+            redirectAttributes.addFlashAttribute("errorUserLogin", "Check your username and password"); //Returna till ett error meddelande med model attribute
+            return "redirect:/";
         }
     }
 
