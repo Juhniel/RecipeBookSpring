@@ -1,8 +1,10 @@
 package com.juhnkim.Model.Repository;
 
-import com.juhnkim.Model.Recipe;
-import com.juhnkim.Model.RecipeRating;
-import com.juhnkim.Model.User;
+
+import com.juhnkim.Model.Entity.Recipe;
+import com.juhnkim.Model.Entity.User;
+import com.juhnkim.Model.Entity.RecipeRating;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
