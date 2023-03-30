@@ -167,6 +167,12 @@
 
 </section>
 
+<div th:if="${errorUserLogin}">
+    <script th:inline="javascript">
+        alert([[${errorUserLogin}]]);
+    </script>
+</div>
+
 <footer class="footerContainer">
 
     <div class="footer-content">
