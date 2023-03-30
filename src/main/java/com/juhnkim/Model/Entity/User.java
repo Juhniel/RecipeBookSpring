@@ -14,15 +14,24 @@ public class User {
     private Long userId;
 
     private String username;
-
     private String userFirstName;
     private String userLastName;
     private String userPassword;
     private String userEmail;
 
+    @Column(name = "user_facebook")
+    private String userFacebook;
+    @Column(name = "user_instagram")
+    private String userInstagram;
+    @Column(name = "user_tiktok")
+    private String userTiktok;
+
     @Column(name = "user_profile_img")
     @Lob
     private byte[] userProfileImg;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Comment> comments;
 
     @ManyToMany
     @JoinTable(
@@ -44,15 +53,6 @@ public class User {
         this.userEmail = userEmail;
     }
 
-
-//    public String setHashedPassword(String password) {
-//        // Hash the password using BCrypt
-//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        String hashedPassword = passwordEncoder.encode(password);
-//
-//        // Set the hashed password as the new password
-//        return hashedPassword;
-//    }
     public void setUserId(Long userId) {
         this.userId = userId;
     }
@@ -116,5 +116,38 @@ public class User {
 
     public void setFavouriteRecipe(List<Recipe> favouriteRecipe) {
         this.favouriteRecipe = favouriteRecipe;
+    }
+
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public String getUserFacebook() {
+        return userFacebook;
+    }
+
+    public void setUserFacebook(String userFacebook) {
+        this.userFacebook = userFacebook;
+    }
+
+    public String getUserInstagram() {
+        return userInstagram;
+    }
+
+    public void setUserInstagram(String userInstagram) {
+        this.userInstagram = userInstagram;
+    }
+
+    public String getUserTikTok() {
+        return userTiktok;
+    }
+
+    public void setUserTikTok(String userTiktok) {
+        this.userTiktok = userTiktok;
     }
 }

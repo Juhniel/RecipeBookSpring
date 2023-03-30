@@ -1,7 +1,10 @@
 package com.juhnkim.Controller;
 
+import com.juhnkim.Model.Entity.Comment;
 import com.juhnkim.Model.Entity.Recipe;
 import com.juhnkim.Model.Repository.RecipeRepository;
+import com.juhnkim.Model.Repository.UserRepository;
+import com.juhnkim.Model.Service.CommentService;
 import com.juhnkim.Model.TastyApi;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -20,12 +24,19 @@ public class RecipeController extends BaseController{
     @Autowired
     private RecipeRepository recipeRepository;
 
+    @Autowired
+    private CommentService commentService;
+
+
     @GetMapping("/recipe/{id}")
     public String getRecipe(@PathVariable Long id, Model model, HttpSession session) {
         Optional<Recipe> recipe = recipeRepository.findById(id);
         if (recipe.isPresent()) {
             model.addAttribute("recipe", recipe.get());
             addLoggedInUser(model,session);
+            List<Comment> comments = commentService.getCommentsByRecipeId(id);
+            model.addAttribute("comments", comments);
+
             return "../templates/html/recipe";
         } else {
             model.addAttribute("errorMessage", "Recipe not found");
