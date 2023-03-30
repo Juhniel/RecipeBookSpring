@@ -44,6 +44,7 @@ public class LoginController {
                 session.removeAttribute("loginAttempts");
                 User user = userRepository.findByUsername(username).get();
                 session.setAttribute("loggedInUser", user);
+                return "redirect:" + referer;
             } else {
                 loginAttempts++;
                 session.setAttribute("loginAttempts", loginAttempts);
@@ -51,7 +52,6 @@ public class LoginController {
                 return "redirect:" + referer;
             }
         }
-        return null;
     }
 
     @PostMapping("/logout")
