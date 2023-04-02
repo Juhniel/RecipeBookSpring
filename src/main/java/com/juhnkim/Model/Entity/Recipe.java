@@ -20,6 +20,9 @@ public class Recipe {
 
     private String recipeImage;
 
+    private String recipeVideo;
+    private Integer recipeServings;
+
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> comments;
 
@@ -31,11 +34,13 @@ public class Recipe {
 
     }
 
-    public Recipe(String recipeName, String recipeInstructions, String recipeIngredients, String recipeImage) {
+    public Recipe(String recipeName, String recipeInstructions, String recipeIngredients, String recipeImage, String recipeVideo, Integer recipeServings) {
         this.recipeName = recipeName;
         this.recipeInstructions = recipeInstructions;
         this.recipeIngredients = recipeIngredients;
         this.recipeImage = recipeImage;
+        this.recipeVideo = recipeVideo;
+        this.recipeServings = recipeServings;
     }
 
     public Long getRecipeId() {
@@ -74,8 +79,25 @@ public class Recipe {
         return recipeImage;
     }
 
+
+    public String getRecipeVideo() {
+        return recipeVideo;
+    }
+
+    public void setRecipeVideo(String recipeVideo) {
+        this.recipeVideo = recipeVideo;
+    }
+
     public void setRecipeImage(String recipeImage) {
         this.recipeImage = recipeImage;
+    }
+
+    public Integer getRecipeServings() {
+        return recipeServings;
+    }
+
+    public void setRecipeServings(Integer recipeServings) {
+        this.recipeServings = recipeServings;
     }
 
     public List<User> getUser() {
