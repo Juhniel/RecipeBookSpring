@@ -189,6 +189,10 @@
     text-decoration: none;
 }
 
+.dropdown-menu-item:visited {
+    color: black;
+}
+
 .dropdown-menu-item:hover {
     background-color: #f2f2f2;
 }
