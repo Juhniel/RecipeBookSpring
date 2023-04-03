@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/recipe.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
-<!--    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
     <script type="text/javascript" th:src="@{/js/recipeRating.js}" th:defer="defer"></script>
@@ -24,7 +23,6 @@
             <div class="hamburger-icon" onclick="toggleDropdown()">
                 <img src="https://recept.se/assets/images/menu/hamburger.svg" alt="Logo">
             </div>
-            <!-- GÖR OM DIV TILL <a> länkar så att vi skickas till contact.html , about.html och articles.html -->
             <div class="dropdown-menu" id="dropdown-menu" style="display:none">
                 <a href="/articles" class="dropdown-menu-item">Articles</a>
                 <a href="/about" class="dropdown-menu-item">About us</a>
@@ -103,31 +101,38 @@
 <div class="recipeInfoContainer">
     <div class="ingredients">
         <h2>Ingredients:</h2>
+        <div class="recipeServings">
+            <p th:text="'Servings: ' + ${recipe.getRecipeServings()}"></p>
+        </div>
         <ul>
             <li th:each="ingredient : ${recipe.getRecipeIngredients().substring(1, recipe.getRecipeIngredients().length()-1).split(',')}"
                 th:text="${ingredient}"></li>
 
         </ul>
     </div>
-
     <div class="instructions">
         <h2>Instructions:</h2>
         <ol>
             <li th:if="${recipe.getRecipeInstructions() != null and !recipe.getRecipeInstructions().isEmpty()}"
-                th:each="instruction : ${#strings.arraySplit(#strings.replace(#strings.substring(recipe.getRecipeInstructions(), 1, #strings.length(recipe.getRecipeInstructions()) - 1), ', Enjoy', ' Enjoy'), '\\.\\.')}"
-                th:text="${instruction}"></li>
+                th:each="instruction : ${#strings.arraySplit(#strings.replace(#strings.substring(recipe.getRecipeInstructions(), 1, #strings.length(recipe.getRecipeInstructions()) - 1), '.,', '.|'), '\\|')}"
+                th:text="${#strings.trim(instruction)}"></li>
         </ol>
     </div>
+</div>
 
-    <div class="comment-section">
-        <h2>Comments</h2>
-        <div class="comment-list">
-            <ul>
-                <li th:each="comment : ${comments}">
-                    <div class="comment-header">
-                        <div>
-                            <strong class="username" th:text="${comment.user.username}">Username</strong>
-                            <span class="social-icons">
+<div class="video-container" th:if="${recipe.getRecipeVideo()}">
+    <iframe width="560" height="315" th:src="${recipe.getRecipeVideo()}" allowfullscreen></iframe>
+</div>
+
+<div class="comment-section">
+    <h2>Comments</h2>
+    <div class="comment-list">
+        <ul>
+            <li th:each="comment : ${comments}">
+                <div class="comment-header">
+                    <div>
+                        <strong class="username" th:text="${comment.user.username}">Username</strong>
+                        <span class="social-icons">
               <a th:if="${loggedInUser != null and loggedInUser.getUserFacebook() != null}"
                  th:href="${loggedInUser.getUserFacebook()}" target="_blank" title="Facebook"><i
                       class="fab fa-facebook"></i></a>
@@ -145,28 +150,27 @@
               <a th:if="${loggedInUser == null or loggedInUser.getUserTikTok() == null}"
                  style="pointer-events:none;opacity:0.5"><i class="fab fa-tiktok"></i></a>
             </span>
-                        </div>
-                        <div class="date-time">
-                            <span th:text="${#temporals.format(comment.createdAt, 'yyyy-MM-dd')}">Comment date</span><br>
-                            <span th:text="${#temporals.format(comment.createdAt, 'HH:mm:ss')}">Comment time</span>
-                        </div>
                     </div>
-                    <p class="comment-content" th:text="${comment.content}">Comment content</p>
-                </li>
-            </ul>
-        </div>
+                    <div class="date-time">
+                        <span th:text="${#temporals.format(comment.createdAt, 'yyyy-MM-dd')}">Comment date</span><br>
+                        <span th:text="${#temporals.format(comment.createdAt, 'HH:mm:ss')}">Comment time</span>
+                    </div>
+                </div>
+                <p class="comment-content" th:text="${comment.content}">Comment content</p>
+            </li>
+        </ul>
     </div>
-    <div class="comment-form" th:if="${loggedInUser != null}">
-        <form action="/addComment" method="post">
-            <input type="hidden" name="recipeId" th:value="${recipe.getRecipeId()}">
-            <textarea name="comment" placeholder="Write your comment here..." onfocus="this.placeholder=''"
-                      onblur="this.placeholder='Write your comment here...'" required></textarea>
-            <button type="submit">Post Comment</button>
-        </form>
-    </div>
-    <div class="login-to-comment" th:if="${loggedInUser == null}">
-        <p>Please <a href="#" onclick="showLoginPopup()">log in</a> to post a comment.</p>
-    </div>
+</div>
+<div class="comment-form" th:if="${loggedInUser != null}">
+    <form action="/addComment" method="post">
+        <input type="hidden" name="recipeId" th:value="${recipe.getRecipeId()}">
+        <textarea name="comment" placeholder="Write your comment here..." onfocus="this.placeholder=''"
+                  onblur="this.placeholder='Write your comment here...'" required></textarea>
+        <button type="submit">Post Comment</button>
+    </form>
+</div>
+<div class="login-to-comment" th:if="${loggedInUser == null}">
+    <p>Please <a href="#" onclick="showLoginPopup()">log in</a> to post a comment.</p>
 </div>
 
 <div id="overlay">
