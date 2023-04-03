@@ -11,7 +11,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #d87f7f;
+    background-color: #86BCA8;
     color: #fff;
     padding: 10px;
     width: 100%;
@@ -26,10 +26,15 @@
 }
 
 .navbar-logo img {
-    width: 120px;
-    height: 120px;
+    width: 60px;
+    height: 60px;
     margin-right: 10px;
 }
+
+.logo{
+    margin-left: -15px;
+}
+
 .navbar-brand{
     margin-right: 10px;
 }
