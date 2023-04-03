@@ -1,3 +1,5 @@
+
+
 function highlightStars(star) {
     console.log('highlightStars called');
 
@@ -38,8 +40,6 @@ function resetStars(ratingContainer) {
 }
 
 
-
-
 function handleStarClick(star) {
     console.log('handleStarClick called');
 
@@ -68,13 +68,11 @@ function handleStarClick(star) {
                     }
                 });
             } else {
-                alert("Failed to add rating.");
+                showLoginPopup();
             }
         })
         .catch(error => console.error(error));
 }
-
-
 
 document.querySelectorAll(".ratingContainer").forEach((ratingContainer) => {
     const stars = ratingContainer.querySelectorAll(".star-icon");
