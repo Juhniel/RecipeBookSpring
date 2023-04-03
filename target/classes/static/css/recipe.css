@@ -10,10 +10,6 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-.ratingContainer {
-    margin-left: 60px;
-}
-
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -57,8 +53,12 @@ p {
 .ratingContainer {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin-left: 150px;
     margin-bottom: 20px;
+}
+
+.ratingValue {
+    margin-left: 15px;
 }
 
 .header h1 {
@@ -94,6 +94,10 @@ p {
     padding-left: 0;
 }
 
+.ingredients ul li {
+    margin-top: 9px;
+}
+
 .recipeServings p {
     font-size: 20px;
 }
@@ -105,23 +109,18 @@ p {
     max-width: 700px; /* Adjusted the maximum width */
 }
 
-.instructions ol {
-    list-style: none;
-    counter-reset: my-counter;
-    padding-left: 0;
+.instructions li {
+    padding-inline-start: 1em;
+    margin-bottom: 1.5em;
 }
 
-.instructions ol li {
-    counter-increment: my-counter;
-    margin-bottom: 10px;
-}
-
-.instructions ol li::before {
-    content: counter(my-counter) ""; /* Added a space after the counter */
+.instructions ol li::marker {
     font-weight: bold;
-    display: inline-block;
-    width: 1.5em; /* Adjusted the width to accommodate the space */
 }
+
+
+
+
 
 
 
