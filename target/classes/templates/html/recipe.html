@@ -104,10 +104,9 @@
         <div class="recipeServings">
             <p th:text="'Servings: ' + ${recipe.getRecipeServings()}"></p>
         </div>
-        <ul>
-            <li th:each="ingredient : ${recipe.getRecipeIngredients().substring(1, recipe.getRecipeIngredients().length()-1).split(',')}"
-                th:text="${ingredient}"></li>
-
+        <ul id="ingredients-list">
+<!--            <li th:each="ingredient : ${#strings.arraySplit(#strings.substring(recipe.getRecipeIngredients(), #strings.indexOf(recipe.getRecipeIngredients(), '[') + 1, #strings.indexOf(recipe.getRecipeIngredients(), ']')), ', ')}"-->
+<!--                th:text="${ingredient}"></li>-->
         </ul>
     </div>
     <div class="instructions">
@@ -224,4 +223,16 @@
 </footer>
 
 </body>
+<script th:inline="javascript">
+    const ingredientsString = /*[[${recipe.getRecipeIngredients()}]]*/ '';
+    const ingredientsList = document.getElementById('ingredients-list');
+    const formattedString = ingredientsString.slice(1, -1);
+    const ingredientsArray = formattedString.split(/,\s(?=[A-Z0-9\u00BC-\u00BE\u2150-\u215E\/])/);
+
+    ingredientsArray.forEach(ingredient => {
+        const li = document.createElement('li');
+        li.textContent = ingredient;
+        ingredientsList.appendChild(li);
+    });
+</script>
 </html>
