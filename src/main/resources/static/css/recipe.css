@@ -71,25 +71,71 @@ p {
     border-radius: 20px;
 }
 
+/*RECIPE INGREDIENTS/INSTRUCTIONS*/
+
 .recipeInfoContainer {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px 0;
+    gap: 20px;
 }
 
-.ingredients, .instructions {
-    width: 100%;
-    max-width: 600px;
-    margin: 20px;
+.ingredients {
+    flex: 0 0 20%; /* Adjusted the width */
+    width: 20%;
+    margin-bottom: 20px;
+    max-width: 300px;
+    margin-right: 200px;
 }
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+
+.ingredients ul {
+    list-style: none;
+    padding-left: 0;
 }
-li {
-    margin-bottom: 5px;
+
+.recipeServings p {
+    font-size: 20px;
+}
+
+.instructions {
+    flex: 0 0 70%; /* Adjusted the width */
+    width: 55%;
+    overflow-wrap: break-word;
+    max-width: 700px; /* Adjusted the maximum width */
+}
+
+.instructions ol {
+    list-style: none;
+    counter-reset: my-counter;
+    padding-left: 0;
+}
+
+.instructions ol li {
+    counter-increment: my-counter;
+    margin-bottom: 10px;
+}
+
+.instructions ol li::before {
+    content: counter(my-counter) ""; /* Added a space after the counter */
+    font-weight: bold;
+    display: inline-block;
+    width: 1.5em; /* Adjusted the width to accommodate the space */
+}
+
+
+
+/* VIDEO */
+
+.video-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.video-container iframe {
+    width: 40%;
+    height: 500px;
 }
 
 /* COMMENT SECTION */
@@ -97,7 +143,7 @@ li {
 .comment-section {
     width: 100%;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 30px auto 0;
 }
 
 .comment-list ul {
